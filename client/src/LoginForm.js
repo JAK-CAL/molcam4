@@ -1,4 +1,5 @@
 import React,{ useState } from 'react';
+import { useHistory } from "react-router-dom";
 import { loadReCaptcha, ReCaptcha } from "react-recaptcha-v3";
 
 const formStyle = {
@@ -7,7 +8,7 @@ const formStyle = {
     border: '1px solid #c9c9c9',
     borderRadius: '5px',
     background: '#f5f5f5',
-    width: '220px',
+    width: '300px',
       display: 'block'
 };
 
@@ -38,18 +39,13 @@ const submitStyle = {
     display: 'block'
 };
 
-const Field = React.forwardRef(({label, type}, ref) => {
+const Field = React.forwardRef(({placeholder, type}, ref) => {
     return (
       <div>
-        <label style={labelStyle} >{label}</label>
-        <input ref={ref} type={type} style={inputStyle} />
+        <input ref={ref} type={type} placeholder={placeholder} style={inputStyle} />
       </div>
     );
 });
-
-const validateForm = (Id,Pw) => {
-    return Id.length > 0 && Pw.length > 0;
-}
 
 const verifyCallback = recaptchaToken => {
     // Here you will get the final recaptchaToken!!!
@@ -59,6 +55,9 @@ const verifyCallback = recaptchaToken => {
 const Form = ({onSubmit}) => {
     const usernameRef = React.useRef();
     const passwordRef = React.useRef();
+    let history = useHistory();
+
+
     const handleSubmit = e => {
         e.preventDefault();
         console.log("username: "+usernameRef.current.value);
@@ -72,24 +71,42 @@ const Form = ({onSubmit}) => {
             alert("비밀번호를 입력해주세요.");
             //passwordRef.focus();
             //return;
-          }else{
+          } else{
+            /*
+            axios //비동기 통신
+              .post("http://192.249.18.151:80/member/login", send_param) //서버에 저 url 주소 보내주기
+              //정상 수행
+              .then(returnData => {
+                if (returnData.data.message) {
+                  // console.log("login_id:" + returnData.data._id);
+                  $.cookie("login_id", returnData.data._id, { expires: 1 });
+                  $.cookie("login_name", returnData.data.name, { expires: 1 });
+                  $.cookie("login_email", returnData.data.email, { expires: 1 }); //로그인 되면 쿠키값을 설정해줌 -> 쿠키값 여부로 로그인 여부 확인
+                  alert(returnData.data.message);
+    
+                } else {
+                    alert(returnData.data.message); //로그인 실패
+                }
+              }).catch(err => {
+                console.log(err);
+              });*/
+              
             const data = {
                 username: usernameRef.current.value,
                 password: passwordRef.current.value
             };
+            //window.location.reload();
             onSubmit(data);
+            history.goBack()
           }
         
     };
 
 
-    
-
-
     return (
       <form style={formStyle} onSubmit={handleSubmit} >
-        <Field ref={usernameRef} label="Username:" type="text" />
-        <Field ref={passwordRef} label="Password:" type="password" />
+        <Field ref={usernameRef} placeholder="아이디" type="text" />
+        <Field ref={passwordRef} placeholder="비밀번호" type="password" />
         <ReCaptcha
             sitekey="6LfGieAUAAAAAJSOoqXS5VQdT_e5AH8u0n2e1PDb"
             action="login"
@@ -97,7 +114,7 @@ const Form = ({onSubmit}) => {
           />
 
         <div>
-          <button style={submitStyle} type="submit">Submit</button>
+          <button style={submitStyle} type="submit">로그인</button>
         </div>
       </form>
     );

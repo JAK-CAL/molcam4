@@ -4,7 +4,7 @@ import Form from "./LoginForm";
 function Login(props){
     
     const appStyle = {
-        height: '250px',
+        height: '800px',
           display: 'flex'
       };
 
