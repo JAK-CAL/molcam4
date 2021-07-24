@@ -28,10 +28,12 @@ const Fulfilled = (props) => {
             ...info,
             [e.target.name]:e.target.value,
         });
+        console.log(info);
     }
 
     const sendEmail = (e) => {
         e.preventDefault();
+        console.log(info);
         console.log(info.email);
         const data = {                      //현재의 email state값을 data객체로 감쌌다
             email: info.email

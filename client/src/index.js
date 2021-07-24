@@ -1,12 +1,18 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Route, BrowserRouter, NavLink } from "react-router-dom";
+import {  BrowserRouter } from "react-router-dom";
+import Head from './Head';
 
 ReactDOM.render(
-    <BrowserRouter><App /></BrowserRouter>
+    <div>
+    
+    <BrowserRouter>
+        <Head/>
+        <App/>
+    </BrowserRouter>
+    </div>
     ,document.getElementById('root')
 );
 

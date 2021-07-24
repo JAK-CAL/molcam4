@@ -20,10 +20,6 @@ const Register = (props) => {
                 </NavLink>
             </div>
             </Route>
-            
-            
-            
-       
        
     );
 }
