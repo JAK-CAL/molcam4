@@ -7,13 +7,16 @@ router.post('/loginapp' , (req,res)=>{
     console.log('user app login');
     db.loginapp(req.body.email, req.body.password , (result)=>{
         if(result != null){ //로그인 성공
+            console.log(result)
             const objToSend = {
-                nickName : result.nickName,
+                _id : result._id,
+                name : result.name,
                 email : result.email
             }
             res.status(200).send(JSON.stringify(objToSend));
-            res.set({'access-control-allow-origin': '*'});
+            
         }else{
+            console.log("없는 계정입니다!")
             res.status(404).send();
         }
     })
@@ -22,14 +25,16 @@ router.post('/loginapp' , (req,res)=>{
 router.post('/signupapp' , (req,res)=>{
     console.log('user app sign up');
     db.signupapp(req.body.email ,(result)=>{
-        if(result == null){ //회원가입 시킴
+        if(result === null){ //회원가입 시킴
+            console.log(result)
             db.addOneapp(req.body.name , req.body.email, req.body.password,(result)=>{
+                console.log(result)
                 res.json({
-                    dupYn: "1"
+                    dup: "0"
                 })
             })
-            res.set({'access-control-allow-origin': '*'});
         }else{
+            console.log("회원가입 오류!")
             res.status(404).send();
         }
     })

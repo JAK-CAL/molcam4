@@ -1,6 +1,11 @@
 import React,{ useState } from 'react';
+import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { loadReCaptcha, ReCaptcha } from "react-recaptcha-v3";
+import $ from "jquery";
+import {} from "jquery.cookie"; 
+axios.defaults.withCredentials = true;
+const headers = { withCredentials: true };
 
 const formStyle = {
     margin: 'auto',
@@ -72,32 +77,35 @@ const Form = ({onSubmit}) => {
             //passwordRef.focus();
             //return;
           } else{
-            /*
+            const send_param = {
+              headers,
+              email: usernameRef.current.value,
+              password: passwordRef.current.value
+            };
+            
             axios //비동기 통신
-              .post("http://192.249.18.151:80/member/login", send_param) //서버에 저 url 주소 보내주기
+              .post("http://172.10.18.153:80/user/loginapp", send_param) //서버에 저 url 주소 보내주기
               //정상 수행
               .then(returnData => {
-                if (returnData.data.message) {
+                if (returnData.status === 200) {
                   // console.log("login_id:" + returnData.data._id);
                   $.cookie("login_id", returnData.data._id, { expires: 1 });
                   $.cookie("login_name", returnData.data.name, { expires: 1 });
                   $.cookie("login_email", returnData.data.email, { expires: 1 }); //로그인 되면 쿠키값을 설정해줌 -> 쿠키값 여부로 로그인 여부 확인
-                  alert(returnData.data.message);
-    
+                  alert(returnData.data.name+"님 환영합니다!");
+                  //window.location.reload();
+                  console.log(returnData);
+                  //onSubmit(data);
+                  history.goBack();
                 } else {
-                    alert(returnData.data.message); //로그인 실패
+                    alert("로그인 실패!"); //로그인 실패
                 }
               }).catch(err => {
-                console.log(err);
-              });*/
+                console.log(err.response.status);
+                alert("오류!");
+              });
               
-            const data = {
-                username: usernameRef.current.value,
-                password: passwordRef.current.value
-            };
-            //window.location.reload();
-            onSubmit(data);
-            history.goBack()
+            
           }
         
     };

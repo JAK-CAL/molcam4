@@ -5,6 +5,7 @@ const path = require("path");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const userRouter = require('./router/user');
+//const certRouter = require("./router/certemail");
 const cors = require('cors');
 
 
@@ -44,7 +45,7 @@ app.get('/', (req, res) => {
 
 //router 연결
 app.use('/user', userRouter);
-
+//app.use("/certmail",certRouter);
 // Express 서버 시작
 http.createServer(app).listen(app.get('port'), function(){
     console.log(app.get('port') + "에서 express 실행 중");

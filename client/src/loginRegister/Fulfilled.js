@@ -6,14 +6,41 @@ axios.defaults.withCredentials = true;
 
 const headers = { withCredentials: true };
 
+const formStyle = {
+  margin: 'auto',
+  padding: '10px',
+  border: '1px solid #c9c9c9',
+  borderRadius: '5px',
+  background: '#f5f5f5',
+  width: '300px',
+    display: 'block'
+};
+
+const labelStyle = {
+  margin: '10px 0 5px 0',
+  fontFamily: 'Arial, Helvetica, sans-serif',
+  fontSize: '15px',
+};
 
 const inputStyle = {
-    margin: '5px 0 10px 0',
-    padding: '5px', 
-    border: '1px solid #bfbfbf',
-    borderRadius: '3px',
-    boxSizing: 'border-box',
-    width: '100%'
+  margin: '5px 0 10px 0',
+  padding: '5px', 
+  border: '1px solid #bfbfbf',
+  borderRadius: '3px',
+  boxSizing: 'border-box',
+  width: '100%'
+};
+
+const submitStyle = {
+  margin: '10px 0 0 0',
+  padding: '7px 10px',
+  border: '1px solid #efffff',
+  borderRadius: '3px',
+  background: '#3085d6',
+  width: '100%', 
+  fontSize: '15px',
+  color: 'white',
+  display: 'block'
 };
 
 const Fulfilled = (props) => {
@@ -81,10 +108,11 @@ const Fulfilled = (props) => {
         .post("http://172.10.18.153:80/user/signupapp", send_param)
 //정상 수행
         .then(returnData => { 
+          console.log(returnData)
           if (returnData.data.message) {
             alert(returnData.data.message);
             //이메일 중복 체크
-            if (returnData.data.dupYn === "1") { 
+            if (returnData.data.dup === "1") { 
               setinfo({
                 ...info,
                 "email":"",
@@ -127,7 +155,7 @@ const Fulfilled = (props) => {
             email: info.email
         }
         /*
-        fetch('http://localhost:3001/sendEmail',{      //sendEmail 라우터로 보내버리기
+        fetch('http://http://192.249.18.153/sendEmail',{      //sendEmail 라우터로 보내버리기
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -139,20 +167,21 @@ const Fulfilled = (props) => {
     }
 
     return (
-        <div>
-            <div>
+        <form style={formStyle}>
           <input
             type="text"
             maxLength="100"
+            style={inputStyle}
             name="email"
             placeholder="이메일"
             ref={mailInput}
             onChange={onChange}
           />
           <button onClick={sendEmail}> 메일 인증 </button>
-          </div>
+          
           <input
             type="text"
+            style={inputStyle}
             maxLength="20"
             placeholder="이름"
             name="name"
@@ -162,6 +191,7 @@ const Fulfilled = (props) => {
           <input
             type="password"
             maxLength="64"
+            style={inputStyle}
             name="password"
             ref={pwInput}
 
@@ -170,15 +200,11 @@ const Fulfilled = (props) => {
           />
           <button
             type="button"
+            style={submitStyle}
             onClick={register}>
                 회원가입
             </button>
-          
-            <div>
-          <b>값: </b>
-          {name} ({email})
-        </div>
-        </div>
+        </form>
     );
 }
 
