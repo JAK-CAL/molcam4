@@ -1,9 +1,11 @@
+
 import React,{ useRef,useState } from 'react';
 import axios from "axios"; //http 라이브러리, http를 비동기 통신할때?
-import $ from "jquery";
 import {} from "jquery.cookie"; //로그인, 로그아웃 처리 할때 (쿠키 있 : 게시글 보여줌 / 쿠키 없 : 로그인, 회원가입 창 보여줌)
 axios.defaults.withCredentials = true;
+
 const headers = { withCredentials: true };
+
 
 const inputStyle = {
     margin: '5px 0 10px 0',
@@ -76,8 +78,8 @@ const Fulfilled = (props) => {
         password: password
       };
       axios
-        .post("http://192.249.18.151:80/member/join", send_param)
-        //정상 수행
+        .post("http://172.10.18.153:80/user/signupapp", send_param)
+//정상 수행
         .then(returnData => { 
           if (returnData.data.message) {
             alert(returnData.data.message);
@@ -96,12 +98,8 @@ const Fulfilled = (props) => {
                 "name" : "",
                 "password":"",
               });
-              
-            }
-          } else {
-            alert("회원가입 실패");
-          }
-        })
+        }}}
+        )
         //에러
         .catch(err => {
           console.log(err);
@@ -166,6 +164,7 @@ const Fulfilled = (props) => {
             maxLength="64"
             name="password"
             ref={pwInput}
+
             placeholder="비밀번호"
             onChange={onChange}
           />
