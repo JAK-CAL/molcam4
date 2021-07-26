@@ -3,6 +3,11 @@ import {Route,Router,Link} from "react-router-dom";
 
 import Postboard from './postboard/Postboard';
 
+import $ from "jquery";
+import {} from "jquery.cookie";
+
+
+
 const Head = () => {
   const [boardname,setboard] = useState('');
   
@@ -10,6 +15,7 @@ const Head = () => {
     //setboard(e.target);
     setboard(e.target.name);
   }
+  if ($.cookie("login_id")) {
     return (
   <div>
     <ul>
@@ -25,7 +31,11 @@ const Head = () => {
     </div>
     <Route path="/army"  render = {() => <Postboard name={boardname}/>}></Route>      
   </div>
-  );
+    ); 
+   
+} else{
+  return null;
+}
 }
 
 /* 
