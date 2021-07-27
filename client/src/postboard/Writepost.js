@@ -46,7 +46,6 @@ const Writepost = (props) => {
             email:  $.cookie("login_id"),
             post:post
         };
-
         axios
           .post("http://192.249.18.153:80/user/addOneres",
           params)
@@ -65,7 +64,7 @@ const Writepost = (props) => {
             console.log(err);
           });
 
-        alert("제출되었습니다!");
+      alert("제출되었습니다!");
         
     }
 

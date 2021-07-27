@@ -1,6 +1,5 @@
-import React,{ useState } from 'react';
+import React,{useRef } from 'react';
 import axios from "axios";
-import { useHistory } from "react-router-dom";
 import { loadReCaptcha, ReCaptcha } from "react-recaptcha-v3";
 import $ from "jquery";
 import {} from "jquery.cookie"; 
@@ -58,10 +57,8 @@ const verifyCallback = recaptchaToken => {
   };
 
 const Form = ({onSubmit}) => {
-    const usernameRef = React.useRef();
-    const passwordRef = React.useRef();
-    let history = useHistory();
-
+    const usernameRef = useRef();
+    const passwordRef = useRef();
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -70,11 +67,11 @@ const Form = ({onSubmit}) => {
         
         if (usernameRef.current.value === "" && passwordRef.current.value=== "") {
             alert("이메일 주소를 입력해주세요.");
-            //usernameRef.focus();
+            usernameRef.current.focus();
             //return;
           } else if (passwordRef.current.value === "") {
             alert("비밀번호를 입력해주세요.");
-            //passwordRef.focus();
+            passwordRef.current.focus();
             //return;
           } else{
             const send_param = {
@@ -89,18 +86,19 @@ const Form = ({onSubmit}) => {
               .then(returnData => {
                 if (returnData.status === 200) {
                   // console.log("login_id:" + returnData.data._id);
-                 
+                  $.cookie("login_id", returnData.data._id, { expires: 1 });
+                  $.cookie("login_name", returnData.data.name, { expires: 1 });
+                  $.cookie("login_email", returnData.data.email, { expires: 1 }); //로그인 되면 쿠키값을 설정해줌 -> 쿠키값 여부로 로그인 여부 확인
                   alert(returnData.data.name+"님 환영합니다!");
-                  window.location.href = "http://localhost:3000/writepost"
-                  //window.location.reload();
+                  
                   console.log(returnData);
                   //onSubmit(data);
-                  history.goBack();
+                  window.location.href="http://localhost:3000/writepost";
                 } else {
                     alert("로그인 실패!"); //로그인 실패
                 }
               }).catch(err => {
-                console.log(err.response.status);
+                console.log(err);
                 alert("오류!");
               });
               

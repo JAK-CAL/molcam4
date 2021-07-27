@@ -2,7 +2,7 @@
 import React,{ useRef,useState } from 'react';
 import axios from "axios"; //http 라이브러리, http를 비동기 통신할때?
 import {} from "jquery.cookie"; //로그인, 로그아웃 처리 할때 (쿠키 있 : 게시글 보여줌 / 쿠키 없 : 로그인, 회원가입 창 보여줌)
-
+import styled from "styled-components";
 axios.defaults.withCredentials = true;
 
 const headers = { withCredentials: true };
@@ -17,10 +17,10 @@ const formStyle = {
     display: 'block'
 };
 
-const labelStyle = {
-  margin: '10px 0 5px 0',
-  fontFamily: 'Arial, Helvetica, sans-serif',
-  fontSize: '15px',
+const appStyle = {
+  height: '800px',
+    display: 'flex',
+    zIndex:999
 };
 
 const inputStyle = {
@@ -30,6 +30,15 @@ const inputStyle = {
   borderRadius: '3px',
   boxSizing: 'border-box',
   width: '100%'
+};
+
+const certStyle = {
+  margin: '5px 0 10px 0',
+  padding: '5px', 
+  border: '1px solid #bfbfbf',
+  borderRadius: '3px',
+  boxSizing: 'border-box',
+  width: '63%'
 };
 
 const submitStyle = {
@@ -44,29 +53,59 @@ const submitStyle = {
   display: 'block'
 };
 
+const certsubStyle = {
+  margin: '5px 0 5px 5px ',
+  padding: '5px',
+  border: '1px solid #efffff',
+  borderRadius: '3px',
+  background: '#3085d6',
+  width: '35%', 
+  fontSize: '13px',
+  color: 'white',
+  
+};
 
+const Container = styled.div`
+    position: absolute;
+    z-index: -999;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to left,
+        rgba(20, 20, 20, 0.1) 10%,
+        rgba(20, 20, 20, 0.7) 70%,
+        rgba(20, 20, 20, 1)
+      ),
+      url(http://172.10.18.153/static/background1.jpg);
+      background-size: cover;`
+    ;
 
 const Fulfilled = (props) => {
+
+    const [cert,setcert] = useState(true);
+    const [info, setinfo] = useState({
+      email:'',
+      name:'',
+      password:'',
+  });
+
     const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     const regExp2 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
-
-    const [info, setinfo] = useState({
-        email:'',
-        name:'',
-        password:'',
-    });
 
     const nameInput = useRef();
     const pwInput = useRef();
     const mailInput = useRef();
+    const certInput = useRef();
 
     const { email,name,password } = info;
 
     const register = () => {
-      console.log(info);
+      //console.log(info);
       if (email === "" || email === undefined) {
         alert("이메일 주소를 입력해주세요.");
-        nameInput.current.focus();
+        mailInput.current.focus();
         return;
       } else if (
         email.match(regExp) === null ||
@@ -135,53 +174,80 @@ const Fulfilled = (props) => {
         .catch(err => {
           console.log(err);
         });
-
-
     }
 
     const onChange = (e) => {
-        console.log(info);
-        console.log(e.target.name);
-        console.log(e.target.value);
         setinfo({
             ...info,
             [e.target.name]:e.target.value,
         });
-        console.log(info);
+        
     }
 
     const sendEmail = (e) => {
-        e.preventDefault();
-        console.log(info);
-        console.log(info.email);
-        const data = {                      //현재의 email state값을 data객체로 감쌌다
-            email: info.email
-        }
+
+      if (email === "" || email === undefined) {
+        alert("이메일 주소를 입력해주세요.");
+        nameInput.current.focus();
+        return;
+      } else if (
+        email.match(regExp) === null ||
+        email.match(regExp) === undefined
+      ) {
+        alert("이메일 형식에 맞게 입력해주세요.")
+        setinfo({
+          ...info,
+          "email":"",
+        });
+      } else{
+        alert("인증 메일을 보냈습니다!");
+        setcert(false);
         /*
-        fetch('http://http://192.249.18.153/sendEmail',{      //sendEmail 라우터로 보내버리기
+        fetch('http://192.249.18.153/sendEmail',{      //sendEmail 라우터로 보내버리기
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
         })
         .then(res => res.json())
         .then(json => {
-            
-        })*/
+           
+       })*/
+      }
+        
     }
 
     return (
+      <div>
+      <Container>
+      </Container>
+        <div style={appStyle}>
         <form style={formStyle}>
           <input
             type="text"
             maxLength="100"
-            style={inputStyle}
+            style={certStyle}
             name="email"
             placeholder="이메일"
             ref={mailInput}
             onChange={onChange}
+            disabled={false}
           />
-          <button onClick={sendEmail}> 메일 인증 </button>
+          <button 
           
+          style={certsubStyle}> 메일 보내기</button>
+          <div>
+          <input 
+          type="text"
+          maxLength="6"
+          style={certStyle}
+          placeholder="인증번호"
+          disabled={cert}
+          ref={certInput}
+          />
+          <button 
+         
+          style={certsubStyle}> 인증 </button>
+          </div>
           <input
             type="text"
             style={inputStyle}
@@ -197,7 +263,6 @@ const Fulfilled = (props) => {
             style={inputStyle}
             name="password"
             ref={pwInput}
-
             placeholder="비밀번호"
             onChange={onChange}
           />
@@ -208,16 +273,10 @@ const Fulfilled = (props) => {
                 회원가입
             </button>
         </form>
+        </div>
+        
+        </div>
     );
 }
 
-
-
 export default Fulfilled;
-
-/* <ReCaptcha
-            sitekey="6LfGieAUAAAAAJSOoqXS5VQdT_e5AH8u0n2e1PDb"
-            action="login"
-            verifyCallback={verifyCallback}
-          />
-          */

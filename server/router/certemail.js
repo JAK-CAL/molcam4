@@ -1,47 +1,32 @@
 const express = require("express");
 const router = express.Router();
+let nodemailer = require('nodemailer'); 
 const { smtpTransport } = require('../config/email');
 
 
 
 router.post('/sendEmail', async function (req, res) {
-
-    let user_email = req.body.email;     //받아온 email user_email에 초기화
-
-    console.log(user_email);
-
-    let number = Math.floor(Math.random() * 1000000)+100000; // ★★난수 발생 ★★★★★
-    if(number>1000000){                                      // ★★
-       number = number - 100000;                             // ★★
-    }
-    // 메일발송 함수
-
-    let transporter = nodemailer.createTransport({
-        service: 'gmail'              //사용하고자 하는 서비스
-        , prot: 587
-        , host: 'smtp.gmlail.com'
-        , secure: false
-        , requireTLS: true
-        , auth: {
-            user: '구글@gmail.com'           //gmail주소입력
-            , pass: '비밀번호1234'                 //gmail패스워드 입력
+    const number = generateRandom(111111,999999)
+    const { sendEmail } = req.body;
+    
+    const mailOptions = {
+        from: "정욱이네러버덕",
+        to: sendEmail,
+        subject: "[러버덕]인증 관련 이메일 입니다",
+        text: "오른쪽 숫자 6자리를 입력해주세요 : " + number
+    };
+    
+    const result = await smtpTransport.sendMail(mailOptions, (error, responses) => {
+        if (error) {
+            return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMsg.AUTH_EMAIL_FAIL))
+        }else {
+            /* 클라이언트에게 인증 번호를 보내서 사용자가 맞게 입력하는지 확인! */
+            return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMsg.AUTH_EMAIL_SUCCESS, {
+                number: number
+            }))
         }
     });
-
-    let info = await transporter.sendMail({   
-        from: '구글@gmail.com',             //보내는 주소 입력
-        to: user_email,                        //위에서 선언해준 받는사람 이메일
-        subject: '안녕하세요',                  //메일 제목
-        text: 'ㅁㄴㅇㄹ',                       //내용
-      });
-
-      
-    let checkemail = await new Object();
-    checkemail.number = number;        // checkemail 객체를 따로 만들고
-
-    await res.send(checkemail);    
-
-
+    smtpTransport.close();
 })
 
 module.exports = router;

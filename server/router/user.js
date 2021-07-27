@@ -34,8 +34,10 @@ router.post('/signupapp' , (req,res)=>{
                 })
             })
         }else{
-            console.log("회원가입 오류!")
-            res.status(404).send();
+            console.log("이미 있는 계정입니다!")
+            res.json({
+                dup: "1"
+            })
         }
     })
 });

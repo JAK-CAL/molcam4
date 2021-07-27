@@ -23,11 +23,9 @@ const Detail = (props) => {
     const {subject,board} = post;
 
     useEffect(() => { //생성자 같은 함수, 이 페이지에 (/board/detail) 에 들어오면 바로 실행되는 느낌
-        if (props.location.query !== undefined) { //쿼리로 보낸게 없으면 (NavLink 로 이 페이지 주소로 연결할때 주는)
+        //쿼리로 보낸게 없으면 (NavLink 로 이 페이지 주소로 연결할때 주는)
           getDetail();
-        } else {
-          
-        }
+        
     },[])
     
     const deleteBoard = _id => {
@@ -37,7 +35,7 @@ const Detail = (props) => {
         };
         if (window.confirm("정말 삭제하시겠습니까?")) {
           axios
-            .post("http://172.10.18.153:80/board/delete", send_param) //보드라우터 가서 딜리트 실행
+            .post("http://192.249.18.151:80/board/delete", send_param) //보드라우터 가서 딜리트 실행
             //정상 수행
             .then(returnData => {
               alert("게시글이 삭제 되었습니다.");
@@ -59,7 +57,7 @@ const Detail = (props) => {
             _id: props.location.query._id,
             tableId: tableId
         }
-            axios.post("http://172.10.18.153:80/comment/getCommentList", send_param)
+            axios.post("http://172.10.18.147:80/comment/getCommentList", send_param)
             .then(returnData=>{
                 if(returnData.data.success){
                 const comment=(
@@ -93,11 +91,10 @@ const Detail = (props) => {
     
     const getDetail = () => {
         const send_param = {
-            headers,
-            _id: props.location.query._id
+            headers
         };
         axios
-          .post("http://172.10.18.153:80/board/detail", send_param) //보드 라우터의 디테일 실행 (파람을 보내기)
+          .post("http://192.249.18.151:80/board/detail", send_param) //보드 라우터의 디테일 실행 (파람을 보내기)
           //정상 수행
           .then(returnData => { //받아온 보드 데이터들 
             if (returnData.data.board[0]) { //받아온 보드 데이터는 한개이므로 걍 0번째 인덱스로 하면됨
