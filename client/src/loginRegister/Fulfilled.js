@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Head from "../Head";
 import Postboard from "../postboard/Postboard"
 
+
 const Container = styled.div`
 position: absolute;
 top: 0;
@@ -96,6 +97,7 @@ function Fulfilled (){
     <div>
     <Head/>
       {resultForm}
+      
     </div>
   );  
 }

@@ -1,17 +1,15 @@
 import './App.css';
 import Login from './loginRegister/Login';
 import Register from "./loginRegister/Register";
-import Unfulfilled from "./loginRegister/Unfulfilled";
+import Unfulfilled from './loginRegister/Unfulfilled';
 import Fulfilled from './loginRegister/Fulfilled';
+import Writepost from './postboard/Writepost';
 import Detail from "./postboard/Detail";
-
 import styled from "styled-components";
-import $ from "jquery";
 import {} from "jquery.cookie";
 import {Navigation} from 'react-minimal-side-navigation';
 import { Route, NavLink, Link } from "react-router-dom";
-import Writepost from './postboard/Writepost';
-import Head from './Head';
+import Postboard from './postboard/Postboard';
 
 
 const Container = styled.div`
@@ -120,11 +118,9 @@ function App() {
           <Button>군필</Button>
         </NavLink>
         
-        <NavLink to="/unfulfiled">
+        <NavLink to="/unfulfilled">
           <Button>미필</Button>
         </NavLink>
-          
-
         </div>
         </Sidebar>
         </Container>
@@ -145,6 +141,7 @@ function App() {
       <Route path = "/unfulfilled" component={Unfulfilled}></Route>
       <Route path = "/fulfilled" component={Fulfilled}></Route>
       <Route path = "/writepost" component={Writepost}></Route>
+      <Route path = "/army" component = {Postboard}></Route>
       <Route path = "/army/detail" component={Detail}></Route>
       
     </div>
