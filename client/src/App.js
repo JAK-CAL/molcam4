@@ -5,11 +5,12 @@ import Unfulfilled from './loginRegister/Unfulfilled';
 import Fulfilled from './loginRegister/Fulfilled';
 import Writepost from './postboard/Writepost';
 import Detail from "./postboard/Detail";
+import Postboard from './postboard/army';
 import styled from "styled-components";
 import {} from "jquery.cookie";
 import {Navigation} from 'react-minimal-side-navigation';
 import { Route, NavLink, Link } from "react-router-dom";
-import Postboard from './postboard/Postboard';
+
 
 
 const Container = styled.div`

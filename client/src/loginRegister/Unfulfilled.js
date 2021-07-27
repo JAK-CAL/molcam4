@@ -55,7 +55,7 @@ const Unfulfilled = (props) => {
         <div style={appStyle}>
         <form style={formStyle} >
         <div>
-            <h3>회원가입</h3>
+            <h3>미필 로그인</h3>
                 <div>
                     게시판 관리를 위해 병역 의무에 따라
                     다른 서비스를 제공하고 있습니다.

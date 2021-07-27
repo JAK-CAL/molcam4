@@ -4,7 +4,7 @@ import {} from "jquery.cookie";
 import { Route, NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import Head from "../Head";
-import Postboard from "../postboard/Postboard"
+import Postboard from "../postboard/army"
 
 
 const Container = styled.div`
@@ -64,10 +64,7 @@ function Fulfilled (){
       
     } else { //없으면 로그인 및 회원가입 화면 띄어주기
       
-      resultForm = 
-      
-      
-      
+      resultForm =
       <Container>
         <Sidebar>
         <div style ={
@@ -85,8 +82,6 @@ function Fulfilled (){
         </div>
         </Sidebar>
       </Container>
-      
-        
      
     }
     return resultForm;
@@ -97,7 +92,6 @@ function Fulfilled (){
     <div>
     <Head/>
       {resultForm}
-      
     </div>
   );  
 }
