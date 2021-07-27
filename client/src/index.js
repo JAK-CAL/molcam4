@@ -10,7 +10,6 @@ ReactDOM.render(
     
 
     <BrowserRouter>
-        <Head/>
         <App/>
     </BrowserRouter>
     </div>

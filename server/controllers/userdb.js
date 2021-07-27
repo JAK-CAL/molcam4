@@ -51,10 +51,12 @@ function getAll(callback){
 }
 
 function addOneres(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, ptrans, ptaste, pPXdis,callback){
+    console.log(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, ptrans, ptaste, pPXdis)
     const newRes = new ResModel({
         old: pold,
         bed: pbed,
         playg: pplayg,
+        futsal: pfutsal,
         basket: pbasket,
         tenis: ptenis,
         health: phealth,
