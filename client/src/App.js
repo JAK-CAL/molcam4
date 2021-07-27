@@ -75,13 +75,7 @@ function App() {
           <h2 >TEST</h2>
 
           
-        <NavLink to="/login">
-          <Button>로그인</Button>
-        </NavLink>
-        
-        <NavLink to="/register">
-          <Button>회원가입</Button>
-        </NavLink>
+7
         </div>
         </Sidebar>
         </Container>

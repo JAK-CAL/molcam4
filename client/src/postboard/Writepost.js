@@ -2,6 +2,7 @@ import react, { useState,useCallback } from "react";
 import $ from "jquery";
 import {} from "jquery.cookie";
 import Select from 'react-select';
+import axios from "axios";
 
 const Writepost = (props) => {
 
@@ -47,18 +48,18 @@ const Writepost = (props) => {
         };
 
         axios
-          .post("http://192.249.18.151:80/user/saveres",
+          .post("http://192.249.18.153:80/user/addOneres",
           params)
           .then(returnData => {
-            console.log(returnData.data);
-            if (returnData.data.list.length > 0) {
+            
+            if (returnData === 200) {
               // console.log(returnData.data.list.length);
               alert("작성 성공!")
               // console.log(boardList);
             } else {
               alert("오류!");
             }
-            setboard(boardList);
+            // setboard(boardList);
           })
           .catch(err => {
             console.log(err);

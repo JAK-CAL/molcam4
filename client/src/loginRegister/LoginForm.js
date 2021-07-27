@@ -91,6 +91,7 @@ const Form = ({onSubmit}) => {
                   // console.log("login_id:" + returnData.data._id);
                  
                   alert(returnData.data.name+"님 환영합니다!");
+                  window.location.href = "http://localhost:3000/writepost"
                   //window.location.reload();
                   console.log(returnData);
                   //onSubmit(data);
