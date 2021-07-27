@@ -1,4 +1,5 @@
-const UserModel = require('../models/model');
+const UserModel = require('../models/registermodel');
+const ResModel = require('../models/resmodel');
 
 function addOne(pnickName, pemail , callback){
     const newUser = new UserModel({
@@ -49,11 +50,29 @@ function getAll(callback){
     })
 }
 
+function addOneres(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, ptrans, ptaste, pPXdis,callback){
+    const newRes = new ResModel({
+        old: pold,
+        bed: pbed,
+        playg: pplayg,
+        basket: pbasket,
+        tenis: ptenis,
+        health: phealth,
+        PC: pPC,
+        trans: ptrans,
+        taste: ptaste,
+        PXdis: pPXdis
+    });
+    newRes.save((err,item)=>{
+        callback(item);
+    })
+}
 
 module.exports = {
     addOne,
     loginapp,
     signupapp,
     addOneapp,
-    getAll
+    getAll,
+    addOneres
 }

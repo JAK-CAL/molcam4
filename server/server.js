@@ -13,10 +13,11 @@ const dbURL = 'mongodb://localhost:27017/project4'
 
 var app = express();
 app.use("/static",express.static("uploads"));
-app.use(cors({
-  origin: true,
-  credentials: true
-}));
+// app.use(cors({
+//   origin: 'http://localhost:3000',
+//   credentials: true
+// }));
+app.use(cors);
 
 //mongodb 연결 및 설정
 mongoose.connect(dbURL, {
