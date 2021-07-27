@@ -93,7 +93,7 @@ const Form = ({onSubmit}) => {
                   
                   console.log(returnData);
                   //onSubmit(data);
-                  window.location.href="http://localhost:3000/army";
+                  window.location.href="http://localhost:3000/writepost";
                 } else {
                     alert("로그인 실패!"); //로그인 실패
                 }

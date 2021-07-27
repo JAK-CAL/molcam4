@@ -149,16 +149,19 @@ const Fulfilled = (props) => {
       axios
         .post("http://172.10.18.153:80/user/signupapp", send_param)
 //정상 수행
-        .then(returnData => {
+        .then(returnData => { 
+          console.log(returnData)
+          
             //이메일 중복 체크
-            if (returnData.data.dup === "1") {
-              alert("이미 회원가입 된 계정입니다.\n다른 이메일을 입력해주세요!")
+            if (returnData.dup === "1") { 
               setinfo({
                 ...info,
                 "email":"",
               });
               mailInput.current.focus()
             } else { 
+              console.log("locate page")
+              window.location.href ='http://localhost:3000/login'
               setinfo({
                 ...info,
                 "email" : "",

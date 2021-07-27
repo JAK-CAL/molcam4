@@ -23,11 +23,9 @@ const Detail = (props) => {
     const {subject,board} = post;
 
     useEffect(() => { //생성자 같은 함수, 이 페이지에 (/board/detail) 에 들어오면 바로 실행되는 느낌
-        if (props.location.query !== undefined) { //쿼리로 보낸게 없으면 (NavLink 로 이 페이지 주소로 연결할때 주는)
+        //쿼리로 보낸게 없으면 (NavLink 로 이 페이지 주소로 연결할때 주는)
           getDetail();
-        } else {
-          window.location.href = "/";
-        }
+        
     },[])
     
     const deleteBoard = _id => {
@@ -93,8 +91,7 @@ const Detail = (props) => {
     
     const getDetail = () => {
         const send_param = {
-            headers,
-            _id: props.location.query._id
+            headers
         };
         axios
           .post("http://192.249.18.151:80/board/detail", send_param) //보드 라우터의 디테일 실행 (파람을 보내기)

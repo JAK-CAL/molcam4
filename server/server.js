@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const userRouter = require('./router/user');
 const certRouter = require("./router/certemail");
+//const certRouter = require("./router/certemail");
 const cors = require('cors');
 
 

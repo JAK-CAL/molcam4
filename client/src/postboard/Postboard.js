@@ -1,21 +1,15 @@
 import React,{useState,useEffect} from 'react';
-import { Navbar,Nav,Container,Button } from 'react-bootstrap';
+
 import { NavLink,Route } from 'react-router-dom';
 import BoardRow from './BoardRow';
 import Writepost from './Writepost';
-import $ from "jquery";
-import {} from "jquery.cookie"; 
 
 
 
 const Postboard = (props) =>{
-
-
-  const buttonStyle = {
-    margin: "15px 10px 15px 10px",
-  };
-
+  
     const [boardList,setboard] = useState([]);
+    
     
     useEffect(() => {
       getBoardList();
@@ -94,29 +88,6 @@ const Postboard = (props) =>{
 
         return (
           <div>
-             <Navbar Navbar bg="light" expand="lg">
-          <Container>
-          
-          <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-          <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-          
-           
-            
-            </Nav>
-          </Navbar.Collapse>
-          </Container>
-        </Navbar>
-            <Navbar bg="dark" variant="dark">
-              <Container>
-              <Navbar.Brand href="#home">사이트 이름</Navbar.Brand>
-                <Nav className="me-auto">
-                  <Nav.Link href="#home">부대 리뷰</Nav.Link>
-                  <Nav.Link href="#features">부대 위치</Nav.Link>
-
-                </Nav>
-              </Container>
-            </Navbar>
             <NavLink to= "/writepost"> 
             <button >임시 추가 버튼</button>
             </NavLink>

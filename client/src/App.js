@@ -143,14 +143,15 @@ function App() {
     
   return (
     <div>
-    {resultForm}
       
+      {resultForm}
       <Route path="/login" component={Login}></Route>
       <Route path="/register" component={Register}></Route>
       <Route path = "/register/unfulfilled" component={Unfulfilled}></Route>
       <Route path = "/register/fulfilled" component={Fulfilled}></Route>
       <Route path = "/writepost" component={Writepost}></Route>
       <Route path = "/army/detail" component={Detail}></Route>
+      
     </div>
   );  
 }
