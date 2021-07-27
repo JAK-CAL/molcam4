@@ -15,7 +15,7 @@ function Login(props){
       rgba(20, 20, 20, 0.7) 70%,
       rgba(20, 20, 20, 1)
     ),
-    url(http://192.249.18.153/static/background1.jpg);
+    url(http://172.10.18.153/static/background1.jpg);
     background-size: cover;`
   ;
     

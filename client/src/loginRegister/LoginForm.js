@@ -89,9 +89,7 @@ const Form = ({onSubmit}) => {
               .then(returnData => {
                 if (returnData.status === 200) {
                   // console.log("login_id:" + returnData.data._id);
-                  $.cookie("login_id", returnData.data._id, { expires: 1 });
-                  $.cookie("login_name", returnData.data.name, { expires: 1 });
-                  $.cookie("login_email", returnData.data.email, { expires: 1 }); //로그인 되면 쿠키값을 설정해줌 -> 쿠키값 여부로 로그인 여부 확인
+                 
                   alert(returnData.data.name+"님 환영합니다!");
                   //window.location.reload();
                   console.log(returnData);

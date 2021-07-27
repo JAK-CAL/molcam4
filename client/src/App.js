@@ -62,10 +62,7 @@ function App() {
   
   const getResultForm = () => {
     console.log($.cookie("login_id"));
-    if ($.cookie("login_id")) { //쿠키 있으면 게시판 보여주고
-      resultForm = <Route exact path="/" component={Postboard}></Route>;
-      
-    } else { //없으면 로그인 및 회원가입 화면 띄어주기
+   //없으면 로그인 및 회원가입 화면 띄어주기
       resultForm = 
       
       <Route exact path = "/">
@@ -91,7 +88,7 @@ function App() {
       </Route>
         
      
-    }
+    
     return resultForm;
   }
 
@@ -107,7 +104,7 @@ function App() {
       rgba(20, 20, 20, 0.7) 70%,
       rgba(20, 20, 20, 1)
     ),
-    url(http://192.249.18.153/static/background1.jpg);
+    url(http://172.10.18.153/static/background1.jpg);
   background-size: cover;`
   ;
 

@@ -2,6 +2,7 @@
 import React,{ useRef,useState } from 'react';
 import axios from "axios"; //http 라이브러리, http를 비동기 통신할때?
 import {} from "jquery.cookie"; //로그인, 로그아웃 처리 할때 (쿠키 있 : 게시글 보여줌 / 쿠키 없 : 로그인, 회원가입 창 보여줌)
+
 axios.defaults.withCredentials = true;
 
 const headers = { withCredentials: true };
@@ -42,6 +43,8 @@ const submitStyle = {
   color: 'white',
   display: 'block'
 };
+
+
 
 const Fulfilled = (props) => {
     const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -109,24 +112,24 @@ const Fulfilled = (props) => {
 //정상 수행
         .then(returnData => { 
           console.log(returnData)
-          if (returnData.data.message) {
-            alert(returnData.data.message);
+          
             //이메일 중복 체크
-            if (returnData.data.dup === "1") { 
+            if (returnData.dup === "1") { 
               setinfo({
                 ...info,
                 "email":"",
               });
               mailInput.current.focus()
             } else { 
-              
+              console.log("locate page")
+              window.location.href ='http://localhost:3000/login'
               setinfo({
                 ...info,
                 "email" : "",
                 "name" : "",
                 "password":"",
               });
-        }}}
+        }}
         )
         //에러
         .catch(err => {

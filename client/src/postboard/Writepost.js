@@ -16,21 +16,17 @@ const Writepost = (props) => {
         PC:"",
         trans:"",
         taste:"",
-        PXdis:"",
-        etc:""
+        PXdis:""
     });
     const [unit, setUnit] = useState(0);
     
     const handleChange = useCallback((inputValue) => {
-        console.log(unit);
-        console.log(inputValue === "etc");
         setUnit(inputValue);
         
     }, []);
 
     const options = [
         {value: "8", label:"8사단"},
-        {value:"etc", label:"기타"},
     ];
 
     const {old,bed,playg,futsal,basket,tenis,health,PC,trans,taste,PXdis,etc} = post;
@@ -44,13 +40,15 @@ const Writepost = (props) => {
     }
 
     const handleSubmit = (e) => {
-        /*
-        axios
-          .post("http://192.249.18.151:80/board/writepost",
-          params:{
-            email:  $.cookie("login_id")
+
+        const params = {
+            email:  $.cookie("login_id"),
             post:post
-          })
+        };
+
+        axios
+          .post("http://192.249.18.151:80/user/saveres",
+          params)
           .then(returnData => {
             console.log(returnData.data);
             if (returnData.data.list.length > 0) {
@@ -64,7 +62,8 @@ const Writepost = (props) => {
           })
           .catch(err => {
             console.log(err);
-          });*/
+          });
+
         alert("제출되었습니다!");
         
     }
@@ -101,10 +100,7 @@ const Writepost = (props) => {
                 onChange={(value) => { handleChange(value.value); }}
                 options={options} 
             />
-            <div>
-                <input type="text" disabled={unit !== "etc"} name="unitetc"  onChange={handleOnChange}></input>
-            </div>
-
+           
             </div>
             {makeRadio("막사 노후도","old")}
             <div>
@@ -182,16 +178,10 @@ const Writepost = (props) => {
             {makeRadio("밥","taste")}
             {makeRadio("PX와의 거리","PXdis")}
             <div>
-                기타 특이한 점
-                <input type="text" name="etc" value={etc} onChange={handleOnChange}></input>
-            </div>
-            <div>
                 <button onClick = {handleSubmit}>작성</button>
             </div>
         </div>
-        
     )
-
 }
 
 export default Writepost;
