@@ -2,7 +2,6 @@ import react, { useState,useCallback } from "react";
 import $ from "jquery";
 import {} from "jquery.cookie";
 import Select from 'react-select';
-import axios from "axios";
 
 const Writepost = (props) => {
 
@@ -17,7 +16,8 @@ const Writepost = (props) => {
         PC:"",
         trans:"",
         taste:"",
-        PXdis:""
+        PXdis:"",
+        etc:""
     });
     const [unit, setUnit] = useState(0);
     
@@ -41,30 +41,29 @@ const Writepost = (props) => {
     }
 
     const handleSubmit = (e) => {
-
-        const params = {
-            email:  $.cookie("login_id"),
-            post:post
-        };
+        
         axios
-        .post("http://192.249.18.153:80/user/addOneres",
-        params)
-        .then(returnData => {
-          
-          if (returnData === 200) {
-            // console.log(returnData.data.list.length);
-            alert("작성 성공!")
-            // console.log(boardList);
-          } else {
-            alert("오류!");
-          }
-          // setboard(boardList);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+          .post("http://192.249.18.151:80/board/writepost",
+          params:{
+            email:  $.cookie("login_id")
+            post:post
+          })
+          .then(returnData => {
+            console.log(returnData.data);
+            if (returnData.data.list.length > 0) {
+              // console.log(returnData.data.list.length);
+              alert("작성 성공!")
+              // console.log(boardList);
+            } else {
+              alert("오류!");
+            }
+            setboard(boardList);
+          })
+          .catch(err => {
+            console.log(err);
+          });
 
-      alert("제출되었습니다!");
+        alert("제출되었습니다!");
         
     }
 
