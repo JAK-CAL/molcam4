@@ -52,7 +52,7 @@ const Writepost = (props) => {
           params)
           .then(returnData => {
             
-            if (returnData.dup2 === "0") {
+            if (returnData.data.dup === '0') {
                 // console.log(returnData.data.list.length);
                 alert("제출되었습니다!");
                 // console.log(boardList);

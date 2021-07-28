@@ -52,14 +52,14 @@ router.post('/addOneres', (req,res)=>{
                     console.log(result)
                     console.log("제출되었습니다")
                     res.json({
-                        dup2: "0"
-                    });
+                        dup: '0'
+                    })
                 })
         }else{
             console.log('중복제출금지')
             res.json({
-                dup2: "1"
-            });
+                dup: '1'
+            })
         }
     })
 })

@@ -80,7 +80,9 @@ function addOneres(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, p
 }
 
 function removeRes(pemail){
-    ResModel.deleteOne({email: pemail});
+    ResModel.deleteOne({email: pemail}, (err) => {
+        console.log('error : ', err);
+    });
     ResModel.findOne({email: pemail}, (err,result)=>{
         console.log(result);
         console.log('fuck')
