@@ -13,6 +13,7 @@ const Writepost = (props) => {
         futsal:"",
         basket:"",
         tenis:"",
+        vaca:"",
         health:"",
         PC:"",
         trans:"",

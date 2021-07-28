@@ -12,7 +12,8 @@ var CalibrationPoints={};
 const Tut = (props) => {
     const [modalopen,setmodal] = useState(true);
     const [modal2open,setmodal2] = useState(false);
-
+    const [modal3open,setmodal3] = useState(false);
+    var temp;
     const appStyle = {
         height: '800px',
         display: 'flex'
@@ -26,6 +27,7 @@ const Tut = (props) => {
     // this array will store all the eye movements
     var x = [];
     var stage1 = true;
+    var stage2 = true;
 
     // start recording
     function recordGaze() {
@@ -44,13 +46,22 @@ const Tut = (props) => {
             temp_image.src= save_url;
             x.push([xprediction, yprediction]);
             console.log(xprediction + "," + yprediction);
+            if(stage1){
+              temp = x.filter(xy => xy[1] > 650);
+            }else if(stage2){
+              temp = x.filter(xy => xy[0] < 200);
+            }
             
-            const temp = x.filter(xy => xy[1] > 650);
             console.log(temp);
             if(temp.length > 50 && stage1){
               alert("선임의 화를 피하셨군요!")
               setmodal2(true);
               stage1 = false;
+              webgazer.pause();
+            } else if(temp.length > 50 && stage2){
+              alert("후임에게 눈치를 줬군요!")
+              setmodal3(true);
+              stage2 = false;
               webgazer.pause();
             }
         }).begin();
@@ -59,8 +70,7 @@ const Tut = (props) => {
     
     return (
       <div>
-        <div style={appStyle}>
-          <div className="modal-wrapper"
+        <div className="modal-wrapper"
             style={{
             transform: modalopen ? 'translateY(0vh)' : 'translateY(-100vh)',
             opacity: modalopen ? '1' : '0'
@@ -84,18 +94,15 @@ const Tut = (props) => {
               >체험 시작!
             </button>
           </div>
-          
         </div>
-
-        <div style={appStyle}>
-          <div className="modal-wrapper"
-            style={{
-            transform: modal2open ? 'translateY(0vh)' : 'translateY(-100vh)',
-            opacity: modal2open ? '1' : '0'
-          }}>
+        <div className="modal-wrapper"
+          style={{
+          transform: modal2open ? 'translateY(0vh)' : 'translateY(-100vh)',
+          opacity: modal2open ? '1' : '0'
+        }}>
           <div className="modal-header">
             <h2>미필을 위한 군대 튜토리얼!</h2>
-            <span className="close-modal-btn" onClick={() => {setmodal(false)}}>×</span>
+            <span className="close-modal-btn" onClick={() => {setmodal2(false)}}>×</span>
           </div>
           <div className="modal-body">
             <p>
@@ -107,25 +114,45 @@ const Tut = (props) => {
           <div className="modal-footer">
             <button onClick={() => {
               setmodal2(false);
-              recordGaze();
+              webgazer.resume()
             }}
               >체험 시작!
             </button>
           </div>
-          
         </div>
-        
-        <div onClick={webgazer.resume}>
-          <button class="btn btn-light">Resume</button>
-        </div>
-        <div onClick={webgazer.pause}>
-          <button class="btn btn-light">Pause</button>
+        <div className="modal-wrapper"
+          style={{
+          transform: modal3open ? 'translateY(0vh)' : 'translateY(-100vh)',
+          opacity: modal3open ? '1' : '0'
+        }}>
+          <div className="modal-header">
+            <h2>미필을 위한 군대 튜토리얼!</h2>
+            <span className="close-modal-btn" onClick={() => {setmodal3(false)}}>×</span>
+          </div>
+          <div className="modal-body">
+            <p>
+            <h4>튜토리얼을 끝내셨습니다!</h4>
+            <h4>물론 군대에서는 이런 상황 말고도 좀 더 복잡한 생활이 많이 존재합니다.</h4>
+            <h4>이 사이트를 통해 부디 안전하고 평안한 군생활을 찾길 기원합니다!</h4>
+            </p>
+          </div>
+          <div className="modal-footer">
+            <button onClick={() => {
+              
+              window.location.href = "avg";
+            }}
+              >게시판으로 가기!
+            </button>
+          </div>
         </div>
       </div>
+        
+        
+    
        
-    </div> 
+    
       
-    </div>
+   
     );
 }
 
