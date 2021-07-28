@@ -15,11 +15,11 @@ button {
 #webgazerVideoContainer {
     display: block !important; 
     position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
+    top: 35% !important;
+    left: 40% !important;
     width: 320px !important;
     height: 240px !important;
-    z-index: 1;
+    z-index: 999;
 }
 
 /* Navbar styling */
