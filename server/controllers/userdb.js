@@ -41,7 +41,6 @@ function addOneapp(pname, pemail ,ppassword , callback){
     })
 }
 
-
 function getAll(callback){
     console.log('getAll start')
     UserModel.find({} , (error,result)=>{
@@ -50,8 +49,17 @@ function getAll(callback){
     })
 }
 
-function addOneres(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, ptrans, ptaste, pPXdis,callback){
-    console.log(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, ptrans, ptaste, pPXdis)
+function checkoutEmail(pemail, callback){
+    const query ={
+        email : pemail
+    }
+    ResModel.findOne(query, (err,result)=>{
+        callback(result);
+    })
+}
+
+function addOneres(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, ptrans, ptaste, pPXdis,pemail,callback){
+    console.log(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, ptrans, ptaste, pPXdis, pemail)
     const newRes = new ResModel({
         old: pold,
         bed: pbed,
@@ -63,11 +71,19 @@ function addOneres(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, p
         PC: pPC,
         trans: ptrans,
         taste: ptaste,
-        PXdis: pPXdis
+        PXdis: pPXdis,
+        email: pemail
     });
     newRes.save((err,item)=>{
         callback(item);
     })
+}
+
+function removeRes(pemail){
+    const query ={
+        email : pemail
+    }
+    ResModel.remove(query);
 }
 
 module.exports = {
@@ -76,5 +92,7 @@ module.exports = {
     signupapp,
     addOneapp,
     getAll,
-    addOneres
+    addOneres,
+    checkoutEmail,
+    removeRes
 }

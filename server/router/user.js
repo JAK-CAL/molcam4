@@ -41,15 +41,46 @@ router.post('/signupapp' , (req,res)=>{
         }
     })
 });
+
 //일단 여러번 입력가능하게 구현, 나중에 email 추가로 받아서 한번만 입력가능하게 바꿀 것
 router.post('/addOneres', (req,res)=>{
-    console.log('has been submitted');
-    db.addOneres(req.body.post.old, req.body.post.bed, req.body.post.playg, req.body.post.futsal, req.body.post.basket,
-        req.body.post.tenis,req.body.post.health, req.body.post.PC,req.body.post.trans,req.body.post.taste, req.body.post.PXdis,
-        (result)=>{
+    db.checkoutEmail(req.body.email, (result)=>{
+        if(result === null){
+            db.addOneres(req.body.post.old, req.body.post.bed, req.body.post.playg, req.body.post.futsal, req.body.post.basket, 
+                req.body.post.tenis,req.body.post.health, req.body.post.PC,req.body.post.trans,req.body.post.taste, req.body.post.PXdis,req.body.email,
+                (result)=>{
+                    console.log(result)
+                    console.log("제출되었습니다")
+                    res.json({
+                        dup2: "0"
+                    });
+                })
+        }else{
+            console.log('중복제출금지')
+            res.json({
+                dup2: "1"
+            });
+        }
+    })
+})
+
+router.post('/loadres', (req,res)=>{
+    db.checkoutEmail(req.body.email, (result)=>{
+        if(result === null){
+            console.log('설문을 작성하세요.')
+        }
+        else{
+            console.log('예전에 작성한 설문결과입니다.')
             console.log(result)
-            res.send(200);
-        })
+            res.json({
+                result
+            })
+        }
+    })
+})
+
+router.post('/remove', (req,res)=>{
+    db.removeRes(req.body.email)
 })
 
 module.exports = router;

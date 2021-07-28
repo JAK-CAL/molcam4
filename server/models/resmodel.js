@@ -33,6 +33,9 @@ const resSchema = mongoose.Schema({
     },
     PXdis:{
         type: String
+    },
+    email:{
+        type: String
     }
 })
 
