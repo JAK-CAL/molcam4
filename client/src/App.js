@@ -11,6 +11,7 @@ import {} from "jquery.cookie";
 import {Navigation} from 'react-minimal-side-navigation';
 import { Route, NavLink, Link } from "react-router-dom";
 import tut from './loginRegister/tut';
+import Average from './postboard/average';
 
 
 
@@ -146,6 +147,7 @@ function App() {
       <Route path = "/tut" component = {tut}></Route>
       <Route path = "/army" component = {Postboard}></Route>
       <Route path = "/army/detail" component={Detail}></Route>
+      <Route path = "/avg" component={Average}></Route>
       
     </div>
   );  
