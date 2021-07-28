@@ -35,12 +35,6 @@ const formStyle = {
       display: 'block'
 };
 
-const labelStyle = {
-    margin: '10px 0 5px 0',
-    fontFamily: 'Arial, Helvetica, sans-serif',
-    fontSize: '15px',
-};
-
 const appStyle = {
   height: '800px',
     display: 'flex'

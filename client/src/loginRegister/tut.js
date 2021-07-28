@@ -160,7 +160,7 @@ const tut = (props) => {
 
             temp_image.src= save_url;
             x.push([xprediction, yprediction]);
-            console.log(xprediction + "," + yprediction);
+            //console.log(xprediction + "," + yprediction);
         }).begin();
 
     var id = $(this).attr('id');
