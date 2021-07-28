@@ -85,8 +85,42 @@ function removeRes(pemail){
     });
     ResModel.findOne({email: pemail}, (err,result)=>{
         console.log(result);
-        console.log('fuck')
     })
+}
+
+function updateRes(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, ptrans, ptaste, pPXdis,pemail){
+    const newRes = new ResModel({
+        old: pold,
+        bed: pbed,
+        playg: pplayg,
+        futsal: pfutsal,
+        basket: pbasket,
+        tenis: ptenis,
+        health: phealth,
+        PC: pPC,
+        trans: ptrans,
+        taste: ptaste,
+        PXdis: pPXdis,
+        email: pemail
+    });
+    var options = {upsert: true};
+    ResModel.updateOne({email: pemail}, {
+        old: pold,
+        bed: pbed,
+        playg: pplayg,
+        futsal: pfutsal,
+        basket: pbasket,
+        tenis: ptenis,
+        health: phealth,
+        PC: pPC,
+        trans: ptrans,
+        taste: ptaste,
+        PXdis: pPXdis,
+        email: pemail
+    },(err) => {
+        console.log('error : ', err);
+    });
+    console.log(newRes);
 }
 
 module.exports = {
@@ -97,5 +131,6 @@ module.exports = {
     getAll,
     addOneres,
     checkoutEmail,
-    removeRes
+    removeRes,
+    updateRes
 }

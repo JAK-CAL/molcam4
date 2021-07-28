@@ -84,4 +84,10 @@ router.post('/remove', (req,res)=>{
     res.status(200).send()
 })
 
+router.post('/updateRes', (req,res)=>{
+    db.updateRes(req.body.post.old, req.body.post.bed, req.body.post.playg, req.body.post.futsal, req.body.post.basket, 
+        req.body.post.tenis,req.body.post.health, req.body.post.PC,req.body.post.trans,req.body.post.taste, req.body.post.PXdis,req.body.email);
+    res.status(200).send()
+})
+
 module.exports = router;
