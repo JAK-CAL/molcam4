@@ -1,4 +1,5 @@
-import React,{ useState } from 'react';
+import React,{ useState } from 'react'
+;
 import webgazer from "webgazer";
 import $ from "jquery";
 import {} from "jquery.cookie"; 
@@ -158,7 +159,7 @@ const Tut = (props) => {
 
     // start recording
     function recordGaze() {
-    
+        console.log(modalopen)
         webgazer.setGazeListener(function (data, elapsedTime) {
             if (data == null) {
                 return;
@@ -291,9 +292,17 @@ const Tut = (props) => {
                 <button className="btn btn-light">Start</button>
             </div>
            
-            
-
         </div>
+       
+         
+      
+          <div className="modal">
+            <div >
+
+            </div>
+          </div>
+        
+      
       </div>
     );
 }

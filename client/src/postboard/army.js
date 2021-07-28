@@ -3,6 +3,7 @@ import React,{useState,useEffect} from 'react';
 import { NavLink,Route } from 'react-router-dom';
 import BoardRow from './BoardRow';
 import Writepost from './Writepost';
+import Head from '../Head';
 
 
 
@@ -88,6 +89,7 @@ const Postboard = (props) =>{
 
         return (
           <div>
+             <Head/>
             <NavLink to= "/writepost"> 
             <button >임시 추가 버튼</button>
             </NavLink>
