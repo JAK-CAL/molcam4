@@ -81,6 +81,7 @@ router.post('/loadres', (req,res)=>{
 
 router.post('/remove', (req,res)=>{
     db.removeRes(req.body.email)
+    res.status(200).send()
 })
 
 module.exports = router;

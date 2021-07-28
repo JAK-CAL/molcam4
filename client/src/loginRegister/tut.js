@@ -3,6 +3,7 @@ import webgazer from "webgazer";
 import $ from "jquery";
 import {} from "jquery.cookie"; 
 import Swal from 'sweetalert2'
+import "./tut.css"
 
 var PointCalibrate = 0;
 var CalibrationPoints={};
@@ -13,21 +14,12 @@ const tut = (props) => {
         height: '800px',
         display: 'flex'
       };
-    
-    const formStyle = {
-        margin: 'auto',
-        padding: '10px',
-        border: '1px solid #c9c9c9',
-        borderRadius: '5px',
-        background: '#f5f5f5',
-        width: '300px',
-          display: 'block'
-    };
 
     function calculatePrecision(past50Array) {
+      
       var windowHeight = $(window).height();
       var windowWidth = $(window).width();
-      
+      console.log(windowHeight,windowWidth);
         // Retrieve the last 50 gaze prediction points
       var x50 = past50Array[0];
       var y50 = past50Array[1];
@@ -270,7 +262,7 @@ const tut = (props) => {
     return (
       
         <div style={appStyle}>
-            <div onClick={saveGaze} class="ml-auto">
+            <div onClick={saveGaze} className="ml-auto">
                 <button class="btn btn-light">Save</button>
             </div>
 
@@ -283,18 +275,29 @@ const tut = (props) => {
             </div>
 
             <div onClick={recordGaze}>
-                <button class="btn btn-light">Start</button>
+                <button className="btn btn-light">Start</button>
             </div>
-            <div id="helpModal" class="modal fade" role="dialog">
-              <div class="modal-dialog">
+            <div className="calibrationDiv">
+              <input type="button" className="Calibration" id="Pt1"></input>
+              <input type="button" className="Calibration" id="Pt2"></input>
+              <input type="button" className="Calibration" id="Pt3"></input>
+              <input type="button" className="Calibration" id="Pt4"></input>
+              <input type="button" className="Calibration" id="Pt5"></input>
+              <input type="button" className="Calibration" id="Pt6"></input>
+              <input type="button" className="Calibration" id="Pt7"></input>
+              <input type="button" className="Calibration" id="Pt8"></input>
+              <input type="button" className="Calibration" id="Pt9"></input>
+            </div>
 
-              <div class="modal-content">
-                <div class="modal-body">
+            <div id="helpModal" className="modal fade" role="dialog">
+              <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-body">
                   <img src="media/example/calibration.png" width="100%" height="100%" alt="webgazer demo instructions"></img>
                 </div>
-              <div class="modal-footer">
-                <button id="closeBtn" type="button" class="btn btn-default" data-dismiss="modal">Close & load saved model </button>
-                <button type="button" id='start_calibration' class="btn btn-primary" data-dismiss="modal" onclick="Restart()">Calibrate</button>
+              <div className="modal-footer">
+                <button id="closeBtn" type="button" className="btn btn-default" data-dismiss="modal">Close & load saved model </button>
+                <button type="button" id='start_calibration' className="btn btn-primary" data-dismiss="modal" onClick={webgazer.resume}>Calibrate</button>
               </div>
             </div>
 

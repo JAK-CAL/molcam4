@@ -10,6 +10,7 @@ import styled from "styled-components";
 import {} from "jquery.cookie";
 import {Navigation} from 'react-minimal-side-navigation';
 import { Route, NavLink, Link } from "react-router-dom";
+import tut from './loginRegister/tut';
 
 
 
@@ -142,6 +143,7 @@ function App() {
       <Route path = "/unfulfilled" component={Unfulfilled}></Route>
       <Route path = "/fulfilled" component={Fulfilled}></Route>
       <Route path = "/writepost" component={Writepost}></Route>
+      <Route path = "/tut" component = {tut}></Route>
       <Route path = "/army" component = {Postboard}></Route>
       <Route path = "/army/detail" component={Detail}></Route>
       

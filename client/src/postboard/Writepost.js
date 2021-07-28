@@ -52,23 +52,53 @@ const Writepost = (props) => {
           params)
           .then(returnData => {
             
-            if (returnData.status === 200) {
-              // console.log(returnData.data.list.length);
-              alert("작성 성공!")
-              // console.log(boardList);
+            if (returnData.dup2 === "0") {
+                // console.log(returnData.data.list.length);
+                alert("제출되었습니다!");
+                // console.log(boardList);
             } else {
-              alert("오류!");
+                console.log(returnData);
+                console.log(returnData.dup2);
+                console.log('ddd');
+                alert("중복입력금지!");
             }
             // setboard(boardList);
           })
           .catch(err => {
             console.log(err);
           });
-
-        alert("제출되었습니다!");
-        
     }
 
+    const handleLoad = () => {
+        const params = {
+            email:  $.cookie("login_email"),
+        };
+
+        axios
+            .post("http://192.249.18.153:80/user/loadres",
+            params) 
+            .then(returnData => {
+                if(returnData === null){
+                    alert('설문을 작성하세요.');
+                }else{
+                    console.log(returnData);
+                }
+
+            })
+    }
+
+    const handleDelete = () => {
+        const params = {
+            email:  $.cookie("login_email"),
+        };
+
+        axios
+            .post("http://192.249.18.153:80/user/remove",
+            params)
+            .then(returnData => {
+                alert('지웠습니다');
+            })
+    }
     
 
     const makeRadio = (name,title) => {
@@ -180,6 +210,8 @@ const Writepost = (props) => {
             {makeRadio("PX와의 거리","PXdis")}
             <div>
                 <button onClick = {handleSubmit}>작성</button>
+                <button onClick = {handleLoad}>불러오기</button>
+                <button onClick = {handleDelete}>삭제</button>
             </div>
         </div>
     )
