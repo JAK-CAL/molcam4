@@ -1,4 +1,5 @@
-import React,{ useState } from 'react';
+import React,{ useState } from 'react'
+;
 import webgazer from "webgazer";
 import $ from "jquery";
 import {} from "jquery.cookie"; 
@@ -158,7 +159,7 @@ const Tut = (props) => {
 
     // start recording
     function recordGaze() {
-    
+        console.log(modalopen)
         webgazer.setGazeListener(function (data, elapsedTime) {
             if (data == null) {
                 return;
@@ -294,22 +295,16 @@ const Tut = (props) => {
             
 
         </div>
-        <>
-        {modalopen ? (  
-
-         ////만약 isopen(this.state.isModalOpen)이 true일때 코드를 실행 false면  null
-        /// <div onClick={close}> 로그인창 말고 회색 바탕을 누를시 모달이 꺼지게 만듬
-	      ///<span className="close" onClick={close}>&times;</span> x버튼 누를시 꺼짐
-        ////<div className="modalContents" onClick={isOpen}> 로그인 화면은 버튼 클릭해서 들어오면
-         /// true인 상태로 있어서 화면이 안꺼진다.
+       
+        {modalopen ? ( 
       
           <div className="modal">
-            <div onClick={close}>
+            <div onClick={setmodal(true)}>
               <div className="loginModal">
-                <span className="close" onClick={close}>
+                <span className="close" onClick={() => setmodal(true)}>
                   &times;
                 </span>
-                <div className="modalContents" onClick={isOpen}>
+                <div className="modalContents" onClick={() => setmodal(true)}>
                   <img
                     className="signinIcon"
                     src="/Images/SignIn/signinIcon.png"
@@ -319,14 +314,13 @@ const Tut = (props) => {
                     className="loginId"
                     type="text"
                     placeholder="아이디"
-                    onChange={this.loginHandler}
+                    
                   />
                   <input
                     name="password"
                     className="loginPw"
                     type="password"
                     placeholder="비밀번호"
-                    onChange={this.loginHandler}
                   />
                   <div className="loginMid">
                     <label className="autoLogin" for="hint">
@@ -335,10 +329,7 @@ const Tut = (props) => {
                     </label>
                     <div className="autoLogin">아이디/비밀번호 찾기</div>
                   </div>
-                  <button className="loginBtn" onClick={this.loginClickHandler}>
-                    {" "}
-                    로그인{" "}
-                  </button>
+    
                   <div className="socialBox">
                     <div className="kakao">
                       <img
@@ -359,7 +350,7 @@ const Tut = (props) => {
                   </div>
                   <div className="loginEnd">
                     <div className="loginLine">
-                      회원이 아니신가요? <Link to="/signup">회원가입</Link>
+                      회원이 아니신가요?
                     </div>
                     <div className="noUser">비회원 주문 조회</div>
                   </div>
@@ -368,7 +359,7 @@ const Tut = (props) => {
             </div>
           </div>
         ) : null}
-      </>
+      
       </div>
     );
 }
