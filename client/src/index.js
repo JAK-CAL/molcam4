@@ -3,14 +3,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {  BrowserRouter } from "react-router-dom";
-import Head from './Head';
 
 ReactDOM.render(
     <div>
-    
-
     <BrowserRouter>
-        <Head/>
         <App/>
     </BrowserRouter>
     </div>

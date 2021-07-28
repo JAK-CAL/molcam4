@@ -17,7 +17,8 @@ const Writepost = (props) => {
         PC:"",
         trans:"",
         taste:"",
-        PXdis:""
+        PXdis:"",
+        etc:""
     });
     const [unit, setUnit] = useState(0);
     
@@ -41,17 +42,17 @@ const Writepost = (props) => {
     }
 
     const handleSubmit = (e) => {
-
         const params = {
-            email:  $.cookie("login_id"),
+            email:  $.cookie("login_email"),
             post:post
         };
+        
         axios
           .post("http://192.249.18.153:80/user/addOneres",
           params)
           .then(returnData => {
             
-            if (returnData === 200) {
+            if (returnData.status === 200) {
               // console.log(returnData.data.list.length);
               alert("작성 성공!")
               // console.log(boardList);
@@ -64,7 +65,7 @@ const Writepost = (props) => {
             console.log(err);
           });
 
-      alert("제출되었습니다!");
+        alert("제출되었습니다!");
         
     }
 

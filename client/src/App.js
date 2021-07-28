@@ -1,17 +1,16 @@
 import './App.css';
 import Login from './loginRegister/Login';
 import Register from "./loginRegister/Register";
-import Unfulfilled from "./loginRegister/Unfulfilled";
+import Unfulfilled from './loginRegister/Unfulfilled';
 import Fulfilled from './loginRegister/Fulfilled';
+import Writepost from './postboard/Writepost';
 import Detail from "./postboard/Detail";
-
+import Postboard from './postboard/army';
 import styled from "styled-components";
-import $ from "jquery";
 import {} from "jquery.cookie";
 import {Navigation} from 'react-minimal-side-navigation';
 import { Route, NavLink, Link } from "react-router-dom";
-import Writepost from './postboard/Writepost';
-import Postboard from './postboard/Postboard';
+
 
 
 const Container = styled.div`
@@ -105,10 +104,7 @@ function App() {
   
   const getResultForm = () => {
     //console.log($.cookie("login_id"));
-    if ($.cookie("login_id")) { //쿠키 있으면 게시판 보여주고
-      resultForm = <Route exact path="/" component={Postboard}></Route>;
-      
-    } else { //없으면 로그인 및 회원가입 화면 띄어주기
+   
       resultForm = 
       
       <Route exact path = "/">
@@ -119,21 +115,18 @@ function App() {
           setstyle 
         }>
           <h2 >TEST</h2>
-
-          <NavLink to="/login">
-          <Button>로그인</Button>
+          <NavLink to="/fulfilled">
+          <Button>군필</Button>
         </NavLink>
         
-        <NavLink to="/register">
-          <Button>회원가입</Button>
+        <NavLink to="/unfulfilled">
+          <Button>미필</Button>
         </NavLink>
-
         </div>
         </Sidebar>
         </Container>
       </Route>
-     
-    }
+        
     return resultForm;
   }
 
@@ -146,9 +139,10 @@ function App() {
       {resultForm}
       <Route path="/login" component={Login}></Route>
       <Route path="/register" component={Register}></Route>
-      <Route path = "/register/unfulfilled" component={Unfulfilled}></Route>
-      <Route path = "/register/fulfilled" component={Fulfilled}></Route>
+      <Route path = "/unfulfilled" component={Unfulfilled}></Route>
+      <Route path = "/fulfilled" component={Fulfilled}></Route>
       <Route path = "/writepost" component={Writepost}></Route>
+      <Route path = "/army" component = {Postboard}></Route>
       <Route path = "/army/detail" component={Detail}></Route>
       
     </div>

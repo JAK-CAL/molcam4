@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
-import {Route,Router,Link} from "react-router-dom";
-
-import Postboard from './postboard/Postboard';
-
+import {Route,Link} from "react-router-dom";
+import Postboard from './postboard/army';
 import $ from "jquery";
 import {} from "jquery.cookie";
 
@@ -12,7 +10,6 @@ const Head = () => {
   const [boardname,setboard] = useState('');
   
   const handleSubmit = e => {
-    //setboard(e.target);
     setboard(e.target.name);
   }
   if ($.cookie("login_id")) {
