@@ -39,6 +39,9 @@ const resSchema = mongoose.Schema({
     },
     email:{
         type: String
+    },
+    vaca:{
+        type: String
     }
 })
 

@@ -18,8 +18,11 @@ const Average= () => {
         trans:0,
         taste:0,
         PXdis:0,
-        etc:""
+        
+
     });
+
+    const [count_res,setcount] = useState(0)
     
     let [avg_old,avg_vac,avg_pc,avg_trans,avg_taste,avg_PXdis,avg_health] = [0,0,0,0,0,0,0,0];
     let [cnt_old,cnt_vac,cnt_pc,cnt_trans,cnt_taste,cnt_PXdis,cnt_health] = [0,0,0,0,0,0,0,0];
@@ -29,6 +32,7 @@ const Average= () => {
     useEffect(()=> {
         handleLoadAll();
     },[]);
+
 
 
 
@@ -58,6 +62,9 @@ const Average= () => {
         axios
             .post("http://192.249.18.153:80/user/loadAll")
             .then(returnData=>{
+                setcount(returnData.data.length
+                );
+                console.log(`조사에 응한 사람 수: ${count_res}`)
                 console.log(returnData)
                 if(returnData.status === 200){
                     for(let i =0; i<returnData.data.length; i++){
@@ -134,9 +141,7 @@ const Average= () => {
                         "basket":cnt_basket
                     })
                     //alert('load');
-                    console.log(returnData)
-                    console.log(`데이터 개수는${returnData.data.length}`)
-                    console.log(`막사노후도 평균은${avg_old}`);
+                    
                 }
             })
     }
@@ -145,10 +150,8 @@ const Average= () => {
         <div class = "form">
             <div class="result">
                 <h1>8사단 정보통신대대 평가</h1>
-                <p>x명이 평가에 참여했습니다.</p>
-                
+                <p>{count_res}명이 평가에 참여했습니다.</p>
 		    
-            
                 {makeAvgStar("막사 노후도",old)}
                 {makeAvgStar("휴가",vaca)}
                 {makeAvgStar("헬스장",health)}
