@@ -5,20 +5,21 @@ import { Route, NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import Head from "../Head";
 import Postboard from "../postboard/army"
+import './Fulfilled.css';
 
 
 const Container = styled.div`
 position: absolute;
 top: 0;
 right: 0;
-width: 80%;
+width: 100%;
 height: 100%;
 z-index: -999;
 background: linear-gradient(
     to left,
     rgba(20, 20, 20, 0.1) 10%,
-    rgba(20, 20, 20, 0.7) 70%,
-    rgba(20, 20, 20, 1)
+      rgba(20, 20, 20, 0.8) 40%,
+      rgba(20, 20, 20, 1)70%
   ),
   url(http://192.249.18.153/static/background1.jpg);
 background-size: cover;`
@@ -26,12 +27,15 @@ background-size: cover;`
 
 
 const Button = styled.button`
-  background-color: black;
-  color: white;
-  font-size: 20px;
-  padding: 10px 60px;
-  margin: 10px 10px 10px 10px;
-  width: 95%;
+background-color: white;
+  color: black;
+  font-size: 40px;
+  margin-left: 19.5%;
+  margin-top: 2%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  /* margin: 10px 10px 10px 10px; */
+  width: 17%;
   cursor: pointer;`;
 
   const Sidebar = styled.div`
@@ -63,21 +67,22 @@ function Fulfilled (){
       
       resultForm =
       <Container>
-        <Sidebar>
+      <h1 class = "title">요즘 군대가 군대냐</h1>
         <div style ={
           setstyle 
         }>
-          <h2 >TEST</h2>
+        <div>
           <NavLink to="/login">
           <Button>로그인</Button>
         </NavLink>
-        
+        </div>
+        <div>
         <NavLink to="/register">
           <Button>회원가입</Button>
         </NavLink>
-          
         </div>
-        </Sidebar>
+        </div>
+        
       </Container>
      
     

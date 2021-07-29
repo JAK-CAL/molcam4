@@ -74,9 +74,9 @@ const Container = styled.div`
     height: 100%;
     background: linear-gradient(
         to left,
-        rgba(20, 20, 20, 0.1) 10%,
-        rgba(20, 20, 20, 0.7) 70%,
-        rgba(20, 20, 20, 1)
+      rgba(20, 20, 20, 0.1) 10%,
+      rgba(20, 20, 20, 0.8) 40%,
+      rgba(20, 20, 20, 1)70%
       ),
       url(http://172.10.18.153/static/background1.jpg);
       background-size: cover;`

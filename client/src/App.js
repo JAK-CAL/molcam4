@@ -35,10 +35,13 @@ const Container = styled.div`
   const Button = styled.button`
   background-color: white;
   color: black;
-  font-size: 20px;
-  padding: 10px 60px;
-  margin: 10px 10px 10px 10px;
-  width: 10%;
+  font-size: 40px;
+  margin-left: 19.5%;
+  margin-top: 2%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  /* margin: 10px 10px 10px 10px; */
+  width: 17%;
   cursor: pointer;`;
 
   const Sidebar = styled.div`
@@ -118,14 +121,16 @@ function App() {
         <div style ={
           setstyle 
         }>
-        <h2 >TEST</h2>
+        <div>
         <NavLink to="/fulfilled">
-          <Button class ="mainbt">군필</Button>
+          <Button class ="mainbt">군필입니다</Button>
         </NavLink>
-        
+        </div>
+        <div>
         <NavLink to="/unfulfilled">
-          <Button class ="mainbt">미필</Button>
+          <Button class ="mainbt">미필입니다</Button>
         </NavLink>
+        </div>
         </div>
         
        
