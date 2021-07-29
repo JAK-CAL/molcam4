@@ -15,11 +15,12 @@
 
 .title{
   color:white;
+  font-family: 궁서;
+  font-size: 60px;
+  margin-left: 11%;
+  margin-top: 11%;
 }
 
-.mainbt{
-  background-color: white;
-}
 
 .App-header {
   background-color: #282c34;
