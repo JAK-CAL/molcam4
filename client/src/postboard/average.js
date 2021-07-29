@@ -51,13 +51,15 @@ const Average= () => {
 
     const makeAvgStar = (name,value) => {
         return (
-                <div>
-                    {name}    
+                <inline>
+                    {name}   <span class = "value">{value}</span>
                     <div id="outer">
-                        <div id="overlay" style={{width:(100-value/3*100)+"%"}}></div>
-                        <div id="inner"></div>
+                        <span id="overlay" style={{width:(100-value/3*100)+"%"}}></span>
+                        <span id="inner"></span>
+                       
                     </div>
-                </div>
+                    
+                </inline>
             
         )
     }
@@ -155,7 +157,7 @@ const Average= () => {
             <div class="result">
                 <h1>8사단 정보통신대대 평가</h1>
                 <p>{count_res}명이 평가에 참여했습니다.</p>
-                <div class = "star">
+                <div class = "starrate">
                 <h2>별점</h2>
                 {makeAvgStar("건물",old)}
                 {makeAvgStar("휴가",vaca)}

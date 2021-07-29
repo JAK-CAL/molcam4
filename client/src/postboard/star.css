@@ -1,35 +1,37 @@
 #outer {
     position:relative;
     left: 30%;
-    bottom: 23px;
+    bottom: 24px;
     right: 0;
     width: 75px;
     height: 24px;
-    
+    margin-right: 0px;
   }
   
 #out{
   position:relative;
-    
     height: 30px;
-    
+    margin-right: 0px;
 }
+
 
 #inner {
     position: absolute;
     left: 0;
     right: 0;
+   
     top: 0;
     bottom: 0;
     background-image: url('http://192.249.18.153/static/star.png');
     background-repeat: repeat; 
-    
+    margin-right: 0px;
     z-index: 5;
   }
   
   #overlay {
     position: absolute;
     right: 0;
+    width: 100px;
     top: 0;
     bottom: 0;
     background-color: #fff;
@@ -66,6 +68,14 @@
   margin: auto;
 }
 
-.star{
+.starrate{
   margin-top: 10%;
+}
+
+.value{
+  position: absolute;
+  right: 0;
+  margin-right: 850px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
