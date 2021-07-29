@@ -41,3 +41,18 @@
     background-color: #4CAF50;
     border-radius: 25px; 
     } 
+
+.result{
+  height: 600px;
+	width: 600px;
+	background-color: #FDFEFE;
+	margin: 15px;
+	border-radius: 8px;
+	border-top: 8px solid #000000;
+	padding: 25px;
+}
+.form{
+  height: 1700px;
+  width: 600px;
+  margin: auto;
+}
