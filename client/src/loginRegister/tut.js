@@ -18,7 +18,26 @@ const Tut = (props) => {
         height: '800px',
         display: 'flex'
       };
+    const wrapStyle = {
+      transform: modalopen ? 'translateY(0vh)' : 'translateY(-100vh)',
+      opacity: modalopen ? '1' : '0',
+      position: "absolute",
+      left: "37.5%",
+      top: "20%",
+      width: "25%",
+      height: "33%"   
+    }
+    const headerStyle = {
+      height: "14%"   
+    }
+    const bodyStyle ={
+      height: "54%"    
+    }
+    const footerStyle ={
+      height: "8%", 
+    }
 
+    
 
     
       
@@ -71,22 +90,22 @@ const Tut = (props) => {
     return (
       <div>
         <div className="modal-wrapper"
-            style={{
-            transform: modalopen ? 'translateY(0vh)' : 'translateY(-100vh)',
-            opacity: modalopen ? '1' : '0'
-          }}>
-          <div className="modal-header">
+            style={wrapStyle}>
+          <div className="modal-header"
+            style={headerStyle}
+           >
             <h2>미필을 위한 군대 튜토리얼!</h2>
             <span className="close-modal-btn" onClick={() => {setmodal(false)}}>×</span>
           </div>
-          <div className="modal-body">
+          <div className="modal-body"style={bodyStyle}>
             <p>
-            <h4>아이트래킹을 통해 선임 및 후임 생활을 체험할 수 있습니다!</h4>
-            <h4>우선 선임이 화가 났을 때의 상황부터 익혀봅시다.</h4>
-            <h4>눈을 최대한 아래로 내려 선임의 눈을 피하세요.</h4>
+            <h5>아이트래킹으로 군 생활을 체험해봅시다!</h5>
+            <h5>우선 선임이 화가 났을 때의 상황부터 익혀봅시다.</h5>
+            <h5>눈을 최대한 아래로 내려 선임의 눈을 피하세요.</h5>
             </p>
           </div>
-          <div className="modal-footer">
+          <div className="modal-footer"
+            style={footerStyle}>
             <button onClick={() => {
               setmodal(false);
               recordGaze();
@@ -97,21 +116,29 @@ const Tut = (props) => {
         </div>
         <div className="modal-wrapper"
           style={{
-          transform: modal2open ? 'translateY(0vh)' : 'translateY(-100vh)',
-          opacity: modal2open ? '1' : '0'
-        }}>
-          <div className="modal-header">
+            transform: modal2open ? 'translateY(0vh)' : 'translateY(-100vh)',
+            opacity: modal2open ? '1' : '0',
+            position: "absolute",
+            left: "37.5%",
+            top: "20%",
+            width: "25%",
+            height: "33%"   
+          }}>
+          <div className="modal-header"
+            style={headerStyle}>
             <h2>미필을 위한 군대 튜토리얼!</h2>
             <span className="close-modal-btn" onClick={() => {setmodal2(false)}}>×</span>
           </div>
-          <div className="modal-body">
+          <div className="modal-body"
+            style={bodyStyle}>
             <p>
             <h4>선임의 시선을 잘 피하셨습니다!</h4>
             <h4>다음은 후임이 사고를 쳤을 때의 상황을 연습해보겠습니다.</h4>
-            <h4>화면을 향해 째려봄으로써 후임에게 눈치를 줍시다.</h4>
+            <h4>왼쪽으로 째려봄으로써 후임에게 눈치를 줍시다.</h4>
             </p>
           </div>
-          <div className="modal-footer">
+          <div className="modal-footer"
+            style={footerStyle}>
             <button onClick={() => {
               setmodal2(false);
               webgazer.resume()
@@ -122,14 +149,20 @@ const Tut = (props) => {
         </div>
         <div className="modal-wrapper"
           style={{
-          transform: modal3open ? 'translateY(0vh)' : 'translateY(-100vh)',
-          opacity: modal3open ? '1' : '0'
-        }}>
+            transform: modal3open ? 'translateY(0vh)' : 'translateY(-100vh)',
+            opacity: modal3open ? '1' : '0',
+            position: "absolute",
+            left: "37.5%",
+            top: "20%",
+            width: "25%",
+            height: "33%"   
+          }}>
           <div className="modal-header">
             <h2>미필을 위한 군대 튜토리얼!</h2>
             <span className="close-modal-btn" onClick={() => {setmodal3(false)}}>×</span>
           </div>
-          <div className="modal-body">
+          <div className="modal-body"
+            style={bodyStyle}>
             <p>
             <h4>튜토리얼을 끝내셨습니다!</h4>
             <h4>물론 군대에서는 이런 상황 말고도 좀 더 복잡한 생활이 많이 존재합니다.</h4>
