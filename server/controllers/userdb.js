@@ -126,7 +126,7 @@ function updateRes(pold, pbed, psoil, pgrass, pfutsal, pbasket, ptenis,pvaca, ph
     },(err) => {
         console.log('error : ', err);
     });
-    console.log(newRes);
+    // console.log(newRes);
 }
 
 function loadAll(callback){

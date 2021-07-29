@@ -23,7 +23,7 @@ const Average= () => {
     
     let [avg_old,avg_vac,avg_pc,avg_trans,avg_taste,avg_PXdis,avg_health] = [0,0,0,0,0,0,0,0];
     let [cnt_bed,cnt_soil,cnt_grass,cnt_futsal,cnt_tenis] = [0,0,0,0,0];
-    const {old,bed,soil,grass,futsal,basket,tenis,vaca,health,PC,trans,taste,PXdis,etc} = post;
+    const {old,bed,soil,grass,futsal,basket,tenis,vaca,health,PC,trans,taste,PXdis} = post;
 
     useEffect(()=> {
         handleLoadAll();
