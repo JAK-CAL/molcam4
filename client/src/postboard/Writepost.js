@@ -13,6 +13,7 @@ const Writepost = (props) => {
         futsal:"",
         basket:"",
         tenis:"",
+        vaca:"",
         health:"",
         PC:"",
         trans:"",
@@ -31,7 +32,7 @@ const Writepost = (props) => {
         {value: "8", label:"8사단"},
     ];
 
-    const {old,bed,playg,futsal,basket,tenis,health,PC,trans,taste,PXdis,etc} = post;
+    const {old,bed,playg,futsal,basket,tenis,vaca, health,PC,trans,taste,PXdis,etc} = post;
 
     const handleOnChange = (e) => {
         //e.preventDefault();
@@ -55,6 +56,7 @@ const Writepost = (props) => {
             if (returnData.data.dup === '0') {
                 // console.log(returnData.data.list.length);
                 alert("제출되었습니다!");
+                window.location.href="http://localhost:3000/avg";
                 // console.log(boardList);
             } else {
                 console.log(returnData);
@@ -67,6 +69,7 @@ const Writepost = (props) => {
                         .then(returnData => {
                             if(returnData.status === 200){
                                 console.log('새로 등록되었습니다');
+                                window.location.href="http://localhost:3000/avg";
                             }
                         })
                 }

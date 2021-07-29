@@ -58,8 +58,8 @@ function checkoutEmail(pemail, callback){
     })
 }
 
-function addOneres(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, ptrans, ptaste, pPXdis,pemail,callback){
-    console.log(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, ptrans, ptaste, pPXdis, pemail)
+function addOneres(pold, pbed, pplayg, pfutsal, pbasket, ptenis, pvaca, phealth, pPC, ptrans, ptaste, pPXdis,pemail,callback){
+    console.log(pold, pbed, pplayg, pfutsal, pbasket, ptenis, pvaca, phealth, pPC, ptrans, ptaste, pPXdis, pemail)
     const newRes = new ResModel({
         old: pold,
         bed: pbed,
@@ -67,6 +67,7 @@ function addOneres(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, p
         futsal: pfutsal,
         basket: pbasket,
         tenis: ptenis,
+        vaca: pvaca,
         health: phealth,
         PC: pPC,
         trans: ptrans,
@@ -88,7 +89,7 @@ function removeRes(pemail){
     })
 }
 
-function updateRes(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, ptrans, ptaste, pPXdis,pemail){
+function updateRes(pold, pbed, pplayg, pfutsal, pbasket, ptenis,pvaca, phealth, pPC, ptrans, ptaste, pPXdis,pemail){
     const newRes = new ResModel({
         old: pold,
         bed: pbed,
@@ -96,6 +97,7 @@ function updateRes(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, p
         futsal: pfutsal,
         basket: pbasket,
         tenis: ptenis,
+        vaca: pvaca,
         health: phealth,
         PC: pPC,
         trans: ptrans,
@@ -111,6 +113,7 @@ function updateRes(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, p
         futsal: pfutsal,
         basket: pbasket,
         tenis: ptenis,
+        vaca: pvaca,
         health: phealth,
         PC: pPC,
         trans: ptrans,
@@ -123,6 +126,13 @@ function updateRes(pold, pbed, pplayg, pfutsal, pbasket, ptenis, phealth, pPC, p
     console.log(newRes);
 }
 
+function loadAll(callback){
+    const filter = {};
+    ResModel.find(filter, (err,result) =>
+        callback(result)
+    );
+}
+
 module.exports = {
     addOne,
     loginapp,
@@ -132,5 +142,6 @@ module.exports = {
     addOneres,
     checkoutEmail,
     removeRes,
-    updateRes
+    updateRes,
+    loadAll
 }

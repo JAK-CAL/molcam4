@@ -47,7 +47,7 @@ router.post('/addOneres', (req,res)=>{
     db.checkoutEmail(req.body.email, (result)=>{
         if(result === null){
             db.addOneres(req.body.post.old, req.body.post.bed, req.body.post.playg, req.body.post.futsal, req.body.post.basket, 
-                req.body.post.tenis,req.body.post.health, req.body.post.PC,req.body.post.trans,req.body.post.taste, req.body.post.PXdis,req.body.email,
+                req.body.post.tenis,req.body.post.vaca, req.body.post.health, req.body.post.PC,req.body.post.trans,req.body.post.taste, req.body.post.PXdis,req.body.email,
                 (result)=>{
                     console.log(result)
                     console.log("제출되었습니다")
@@ -86,8 +86,15 @@ router.post('/remove', (req,res)=>{
 
 router.post('/updateRes', (req,res)=>{
     db.updateRes(req.body.post.old, req.body.post.bed, req.body.post.playg, req.body.post.futsal, req.body.post.basket, 
-        req.body.post.tenis,req.body.post.health, req.body.post.PC,req.body.post.trans,req.body.post.taste, req.body.post.PXdis,req.body.email);
+        req.body.post.tenis,req.body.post.vaca,req.body.post.health, req.body.post.PC,req.body.post.trans,req.body.post.taste, req.body.post.PXdis,req.body.email);
     res.status(200).send()
+})
+
+router.post('/loadAll', (req,res)=>{
+    db.loadAll((result) => {
+        console.log(result)
+        res.status(200).send(JSON.stringify(result));
+    })
 })
 
 module.exports = router;
