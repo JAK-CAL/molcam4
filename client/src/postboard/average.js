@@ -124,20 +124,20 @@ const Average= () => {
             <div class="result">
                 <h1>8사단 정보통신대대 평가</h1>
                 <p>{count_res}명이 평가에 참여했습니다.</p>
-		    
-                {makeAvgStar("막사 노후도",old)}
+                <div class = "star">
+                {makeAvgStar("건물",old)}
                 {makeAvgStar("휴가",vaca)}
                 {makeAvgStar("헬스장",health)}
-                {makeAvgStar("피시방 거리",PC)}
+                {makeAvgStar("주변 피시방",PC)}
                 {makeAvgStar("교통",trans)}
                 {makeAvgStar("밥",taste)}
                 {makeAvgStar("PX",PXdis)}
-                {makeAvg("풋살장",futsal)}
-                {makeAvg("테니스장",tenis)}
-                {makeAvg("잔디 운동장",grass)}
-                {makeAvg("흙 운동장",soil)}
-                {makeAvg("침대/침상:",bed)}
-                
+                {makeAvg("침대/침상:  ",bed)}
+                {makeAvg("풋살장:  ",futsal)}
+                {makeAvg("테니스장:  ",tenis)}
+                {makeAvg("잔디 운동장:  ",grass)}
+                {makeAvg("흙 운동장:  ",soil)}
+                </div>
             </div>
         </div>
         
