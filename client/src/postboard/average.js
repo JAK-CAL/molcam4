@@ -36,12 +36,23 @@ const Average= () => {
     }
 
     const handleLoadAll = () => {
+
+      
         axios
             .post("http://192.249.18.153:80/user/loadAll")
             .then(returnData=>{
                 if(returnData.status === 200){
+                    let avg_old = 0;
+
+                    for(let i =0; i<returnData.data.length; i++){
+                        avg_old += parseInt(returnData.data[i].old);
+                    }
+                    avg_old /= returnData.data.length;
+
                     alert('load');
                     console.log(returnData)
+                    console.log(`데이터 개수는${returnData.data.length}`)
+                    console.log(`막사노후도 평균은${avg_old}`);
                 }
             })
     }

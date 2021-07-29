@@ -19,26 +19,26 @@ const Container = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  width: 80%;
+  width: 100%;
   height: 100%;
   z-index: -999;
   background: linear-gradient(
       to left,
       rgba(20, 20, 20, 0.1) 10%,
-      rgba(20, 20, 20, 0.7) 70%,
-      rgba(20, 20, 20, 1)
+      rgba(20, 20, 20, 0.8) 40%,
+      rgba(20, 20, 20, 1)70%
     ),
     url(http://192.249.18.153/static/background1.jpg);
   background-size: cover;`
   ;
 
   const Button = styled.button`
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   font-size: 20px;
   padding: 10px 60px;
   margin: 10px 10px 10px 10px;
-  width: 95%;
+  width: 10%;
   cursor: pointer;`;
 
   const Sidebar = styled.div`
@@ -112,21 +112,23 @@ function App() {
       <Route exact path = "/">
       
       <Container>
-        <Sidebar>
+       </Container>
+      <h1 class = "title">요즘 군대가 군대냐</h1>
+        
         <div style ={
           setstyle 
         }>
-          <h2 >TEST</h2>
-          <NavLink to="/fulfilled">
-          <Button>군필</Button>
+        <h2 >TEST</h2>
+        <NavLink to="/fulfilled">
+          <Button class ="mainbt">군필</Button>
         </NavLink>
         
         <NavLink to="/unfulfilled">
-          <Button>미필</Button>
+          <Button class ="mainbt">미필</Button>
         </NavLink>
         </div>
-        </Sidebar>
-        </Container>
+        
+       
       </Route>
         
     return resultForm;
