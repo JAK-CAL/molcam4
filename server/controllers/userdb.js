@@ -58,12 +58,13 @@ function checkoutEmail(pemail, callback){
     })
 }
 
-function addOneres(pold, pbed, pplayg, pfutsal, pbasket, ptenis, pvaca, phealth, pPC, ptrans, ptaste, pPXdis,pemail,callback){
-    console.log(pold, pbed, pplayg, pfutsal, pbasket, ptenis, pvaca, phealth, pPC, ptrans, ptaste, pPXdis, pemail)
+function addOneres(pold, pbed, psoil, pgrass, pfutsal, pbasket, ptenis, pvaca, phealth, pPC, ptrans, ptaste, pPXdis,pemail,callback){
+    console.log(pold, pbed, psoil, pgrass, pfutsal, pbasket, ptenis, pvaca, phealth, pPC, ptrans, ptaste, pPXdis, pemail)
     const newRes = new ResModel({
         old: pold,
         bed: pbed,
-        playg: pplayg,
+        soil: psoil,
+        grass: pgrass,
         futsal: pfutsal,
         basket: pbasket,
         tenis: ptenis,
@@ -89,11 +90,12 @@ function removeRes(pemail){
     })
 }
 
-function updateRes(pold, pbed, pplayg, pfutsal, pbasket, ptenis,pvaca, phealth, pPC, ptrans, ptaste, pPXdis,pemail){
+function updateRes(pold, pbed, psoil, pgrass, pfutsal, pbasket, ptenis,pvaca, phealth, pPC, ptrans, ptaste, pPXdis,pemail){
     const newRes = new ResModel({
         old: pold,
         bed: pbed,
-        playg: pplayg,
+        soil: psoil,
+        grass: pgrass,
         futsal: pfutsal,
         basket: pbasket,
         tenis: ptenis,
@@ -109,7 +111,8 @@ function updateRes(pold, pbed, pplayg, pfutsal, pbasket, ptenis,pvaca, phealth, 
     ResModel.updateOne({email: pemail}, {
         old: pold,
         bed: pbed,
-        playg: pplayg,
+        soil: psoil,
+        grass: pgrass,
         futsal: pfutsal,
         basket: pbasket,
         tenis: ptenis,

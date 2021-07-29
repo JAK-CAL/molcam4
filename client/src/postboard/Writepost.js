@@ -9,7 +9,8 @@ const Writepost = (props) => {
     const [post, setpost] = useState({
         old:"",
         bed:'',
-        playg:'',
+        soil:'',
+        grass:'',
         futsal:"",
         basket:"",
         tenis:"",
@@ -35,11 +36,13 @@ const Writepost = (props) => {
     const {old,bed,playg,futsal,basket,tenis,vaca, health,PC,trans,taste,PXdis,etc} = post;
 
     const handleOnChange = (e) => {
+        console.log(e.target.name,e.target.value)
         //e.preventDefault();
         setpost({
             ...post,
             [e.target.name]:e.target.value,
         });
+        console.log(post)
     }
 
     const handleSubmit = (e) => {
@@ -145,10 +148,10 @@ const Writepost = (props) => {
             />
            
             </div>
-            {makeRadio("막사 노후도","old")}
+            {makeRadio("건물 낡음 정도: ","old")}
             <div>
                 <div>
-                침상 및 침대
+                침상/침대:  
                 <input type="radio" name="bed" value="notbed" onChange={handleOnChange}>
                 </input>
                 침상
@@ -157,19 +160,9 @@ const Writepost = (props) => {
                 침대
                 </div>
             </div>
-
-            <div>
-                운동장
-                <input type="radio" name="playg" value="grass" onChange={handleOnChange}>
-                </input>
-                인조잔디
-                <input type="radio"  name="playg" value="soil" onChange={handleOnChange}>
-                </input>
-                흙운동장
-            </div>
             
             <div>
-                기타 운동장
+                기타:  
                 <input type="checkbox"  name="futsal" onChange={handleOnChange}>
                 </input>
                 풋살장
@@ -179,10 +172,12 @@ const Writepost = (props) => {
                 <input type="checkbox"  name="tenis" onChange={handleOnChange}>
                 </input>
                 테니스장
-            </div>
-            
-            <div>
-                복지 및 역세권
+                <input type="checkbox" name="grass" onChange={handleOnChange}>
+                </input>
+                인조잔디
+                <input type="checkbox"  name="soil" onChange={handleOnChange}>
+                </input>
+                흙운동장
             </div>
             
             {makeRadio("휴가","vaca")}

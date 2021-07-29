@@ -10,7 +10,8 @@ const Average= () => {
     const [post, setpost] = useState({
         old:0,
         bed:"",
-        playg:'',
+        soil:'',
+        grass:'',
         futsal:"",
         basket:"",
         tenis:"",
@@ -26,7 +27,7 @@ const Average= () => {
 
 
     let [avg_old,avg_vac,avg_pc,avg_trans,avg_taste,avg_PXdis,avg_health] = [0,0,0,0,0,0,0,0];
-    const {old,bed,playg,futsal,basket,tenis,vaca,health,PC,trans,taste,PXdis,etc} = post;
+    const {old,bed,soil,grass,futsal,basket,tenis,vaca,health,PC,trans,taste,PXdis,etc} = post;
 
     useEffect(()=> {
         handleLoadAll();

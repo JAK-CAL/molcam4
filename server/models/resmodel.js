@@ -7,7 +7,10 @@ const resSchema = mongoose.Schema({
     bed: {
         type: String
     },
-    playg:{
+    soil:{
+        type: String
+    },
+    grass:{
         type: String
     },
     futsal:{
