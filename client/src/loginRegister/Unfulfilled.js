@@ -63,7 +63,7 @@ const Unfulfilled = (props) => {
                 <NavLink to="/tut">
                     <button style={submitStyle}>튜토리얼</button>
                 </NavLink>
-                <NavLink to="/army">
+                <NavLink to="/avg">
                     <button style={submitStyle}>글 보기</button>
                 </NavLink>
             </div>
