@@ -1,10 +1,7 @@
 import React,{useState,useEffect} from 'react';
 
-import { NavLink,Route } from 'react-router-dom';
-import BoardRow from './BoardRow';
-import Writepost from './Writepost';
-import Head from '../Head';
 import axios from 'axios';
+import "./star.css"
 
 const Average= () => {
     const [post, setpost] = useState({
@@ -23,9 +20,7 @@ const Average= () => {
         PXdis:0,
         etc:""
     });
-
-
-
+    
     let [avg_old,avg_vac,avg_pc,avg_trans,avg_taste,avg_PXdis,avg_health] = [0,0,0,0,0,0,0,0];
     let [cnt_bed,cnt_soil,cnt_grass,cnt_futsal,cnt_tenis] = [0,0,0,0,0];
     const {old,bed,soil,grass,futsal,basket,tenis,vaca,health,PC,trans,taste,PXdis,etc} = post;
@@ -42,7 +37,22 @@ const Average= () => {
                 {name}
                 {value}
             </div>
+        )
+    }
 
+    const makeAvgStar = (name,value) => {
+        return (
+            <div>
+                {name}
+                <div style ={{
+                    position:"relative"
+                }}>
+                <div id="outer">
+                    <div id="overlay" style={{width:(100-value/3*100)+"%"}}></div>
+                    <div id="inner"></div>
+                </div>
+                </div>
+            </div>
         )
     }
 
@@ -109,13 +119,13 @@ const Average= () => {
 
     return (
         <div>
-            {makeAvg("막사 노후도",old)}
-            {makeAvg("휴가",vaca)}
-            {makeAvg("헬스장",health)}
-            {makeAvg("피시방 거리",PC)}
-            {makeAvg("교통",trans)}
-            {makeAvg("밥",taste)}
-            {makeAvg("PX",PXdis)}
+            {makeAvgStar("막사 노후도",old)}
+            {makeAvgStar("휴가",vaca)}
+            {makeAvgStar("헬스장",health)}
+            {makeAvgStar("피시방 거리",PC)}
+            {makeAvgStar("교통",trans)}
+            {makeAvgStar("밥",taste)}
+            {makeAvgStar("PX",PXdis)}
             {makeAvg("풋살장",futsal)}
             {makeAvg("테니스장",tenis)}
             {makeAvg("잔디 운동장",grass)}

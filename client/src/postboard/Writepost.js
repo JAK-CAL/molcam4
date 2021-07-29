@@ -1,4 +1,4 @@
-import react, { useState,useCallback } from "react";
+import react, { useState,useCallback,useEffect } from "react";
 import $ from "jquery";
 import {} from "jquery.cookie";
 import Select from 'react-select';
@@ -31,6 +31,11 @@ const Writepost = (props) => {
     const options = [
         {value: "8", label:"8사단"},
     ];
+
+    useEffect(() => {
+        handleLoad();
+        console.log(post);
+    },[]);
 
     const {old,bed,playg,futsal,basket,tenis,vaca, health,PC,trans,taste,PXdis,etc} = post;
 
@@ -93,7 +98,23 @@ const Writepost = (props) => {
                 if(returnData === null){
                     alert('설문을 작성하세요.');
                 }else{
-                    console.log(returnData);
+                    console.log(returnData.data.result)
+                    let before = returnData.data.result;
+                    setpost({
+                        ...post,
+                        "old":before.old,
+                        "vaca":before.vaca,
+                        "PC":before.PC,
+                        "trans":before.trans,
+                        "taste":before.taste,
+                        "PXdis":before.PXdis,
+                        "health":before.health,
+                        "bed":before.bed,
+                        "tenis":before.tenis,
+                        "soil":before.soil,
+                        "grass":before.grass,
+                        "futsal":before.futsal,
+                    })
                 }
 
             })
@@ -222,7 +243,6 @@ const Writepost = (props) => {
             {makeRadio("PX와의 거리","PXdis")}
             <div>
                 <button onClick = {handleSubmit}>작성</button>
-                <button onClick = {handleLoad}>불러오기</button>
                 <button onClick = {handleDelete}>삭제</button>
             </div>
         </div>
