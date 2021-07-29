@@ -37,12 +37,16 @@ const Average= () => {
 
 
     const makeAvg = (name,value) => {
+        if(value===""){
+            return;
+        }else{
         return (
-            <div>
+            <div id = "out">
                 {name}
                 {value}
             </div>
         )
+        }
     }
 
     const makeAvgStar = (name,value) => {
@@ -118,7 +122,7 @@ const Average= () => {
 
                     cnt_bed = cnt_bed/returnData.data.length > 0.5 ? '침대' : '침상'
                     cnt_tenis = cnt_tenis/returnData.data.length > 0.5 ? '테니스장' : ''
-                    cnt_soil = cnt_soil/returnData.data.length > 0.5 ? '흙운동장' : ''
+                    cnt_soil = cnt_soil/returnData.data.length > 0.5 ? '흙 운동장' : ''
                     cnt_grass = cnt_grass/returnData.data.length > 0.5 ? '인조잔디구장' : ''
                     cnt_futsal = cnt_futsal/returnData.data.length > 0.5 ? '풋살장' : ''
                     cnt_basket = cnt_basket/returnData.data.length > 0.5 ? '농구장' : ''
@@ -152,6 +156,7 @@ const Average= () => {
                 <h1>8사단 정보통신대대 평가</h1>
                 <p>{count_res}명이 평가에 참여했습니다.</p>
                 <div class = "star">
+                <h2>별점</h2>
                 {makeAvgStar("건물",old)}
                 {makeAvgStar("휴가",vaca)}
                 {makeAvgStar("헬스장",health)}
@@ -159,6 +164,7 @@ const Average= () => {
                 {makeAvgStar("교통",trans)}
                 {makeAvgStar("밥",taste)}
                 {makeAvgStar("PX",PXdis)}
+                <h2>운영 시설</h2>
                 {makeAvg("침대/침상:  ",bed)}
                 {makeAvg("",futsal)}
                 {makeAvg("",tenis)}

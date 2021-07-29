@@ -8,6 +8,13 @@
     
   }
   
+#out{
+  position:relative;
+    
+    height: 30px;
+    
+}
+
 #inner {
     position: absolute;
     left: 0;
@@ -54,11 +61,11 @@
 	padding: 25px;
 }
 .form{
-  height: 1700px;
+  height: 800px;
   width: 600px;
   margin: auto;
 }
 
 .star{
-  margin-top: 12%;
+  margin-top: 10%;
 }
