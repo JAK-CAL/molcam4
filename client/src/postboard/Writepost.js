@@ -56,8 +56,14 @@ const Writepost = (props) => {
             email:  $.cookie("login_email"),
             post:post
         };
-        
-        axios
+        console.log(post)
+        if(post.old === "" || post.bed === "" || post.PC === "" || post.health === ""
+        || post.vaca === "" || post.trans === "" || post.PXdis === "" || post.taste === "" )
+            {
+            alert("모든 내용을 다 기입해주세요!")
+            
+        } else{
+            axios
           .post("http://192.249.18.153:80/user/addOneres",
           params)
           .then(returnData => {
@@ -89,6 +95,8 @@ const Writepost = (props) => {
           .catch(err => {
             console.log(err);
           });
+        }
+        
     }
 
     const handleLoad = () => {

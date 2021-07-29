@@ -25,8 +25,9 @@ const Average= () => {
     const [count_res,setcount] = useState(0)
     
     let [avg_old,avg_vac,avg_pc,avg_trans,avg_taste,avg_PXdis,avg_health] = [0,0,0,0,0,0,0,0];
-    let [cnt_bed,cnt_soil,cnt_grass,cnt_futsal,cnt_tenis] = [0,0,0,0,0];
-    const {old,bed,soil,grass,futsal,basket,tenis,vaca,health,PC,trans,taste,PXdis} = post;
+    let [cnt_old,cnt_vac,cnt_pc,cnt_trans,cnt_taste,cnt_PXdis,cnt_health] = [0,0,0,0,0,0,0,0];
+    let [cnt_bed,cnt_soil,cnt_grass,cnt_futsal,cnt_tenis,cnt_basket] = [0,0,0,0,0,0];
+    const {old,bed,soil,grass,futsal,basket,tenis,vaca,health,PC,trans,taste,PXdis,etc} = post;
 
     useEffect(()=> {
         handleLoadAll();
@@ -72,31 +73,56 @@ const Average= () => {
                         if (returnData.data[i].soil !== "") cnt_soil++;
                         if (returnData.data[i].futsal !== "") cnt_futsal++;
                         if (returnData.data[i].tenis !== "") cnt_tenis++;
+                        if (returnData.data[i].basket !== "") cnt_basket++;
 
-                        if (returnData.data[i].old !== "") avg_old += parseInt(returnData.data[i].old);
-                        if (returnData.data[i].vaca !== "") avg_vac += parseInt(returnData.data[i].vaca);
+                        if (returnData.data[i].old !== ""){
+                            avg_old += parseInt(returnData.data[i].old);
+                            cnt_old++;
+                        } 
+                        if (returnData.data[i].vaca !== ""){
+                            avg_vac += parseInt(returnData.data[i].vaca);
+                            cnt_vac++;
+                        } 
                         //vac data가 없어서 오류나는 중
-                        if (returnData.data[i].PC !== "") avg_pc += parseInt(returnData.data[i].PC);
-                        if (returnData.data[i].trans !== "") avg_trans += parseInt(returnData.data[i].trans);
-                        if (returnData.data[i].taste !== "") avg_taste += parseInt(returnData.data[i].taste);
-                        if (returnData.data[i].PXdis !== "") avg_PXdis += parseInt(returnData.data[i].PXdis);
-                        if (returnData.data[i].health !== "") avg_health += parseInt(returnData.data[i].health);
+                        if (returnData.data[i].PC !== ""){
+                            avg_pc += parseInt(returnData.data[i].PC);
+                            cnt_pc++;
+                        } 
+                        if (returnData.data[i].trans !== ""){
+                            avg_trans += parseInt(returnData.data[i].trans);
+                            cnt_trans++;
+                        }
+                        if (returnData.data[i].taste !== ""){
+                            avg_taste += parseInt(returnData.data[i].taste);
+                            cnt_taste++;
+                        }
+                        if (returnData.data[i].PXdis !== ""){
+                            avg_PXdis += parseInt(returnData.data[i].PXdis);
+                            cnt_PXdis++;
+                        }
+                        if (returnData.data[i].health !== ""){
+                            avg_health += parseInt(returnData.data[i].health);
+                            cnt_health++;
+                        }
                         
                     }
 
-                    avg_old /= returnData.data.length;
-                    avg_vac /= returnData.data.length;
-                    avg_pc /= returnData.data.length;
-                    avg_trans /= returnData.data.length;
-                    avg_taste /= returnData.data.length;
-                    avg_PXdis /= returnData.data.length;
-                    avg_health /= returnData.data.length;
+                    avg_old /= cnt_old;
+                    avg_vac /= cnt_vac;
+                    avg_pc /= cnt_pc;
+                    avg_trans /= cnt_trans;
+                    avg_taste /= cnt_taste;
+                    avg_PXdis /= cnt_PXdis;
+                    avg_health /= cnt_health;
+                    console.log(avg_old)
 
                     cnt_bed = cnt_bed/returnData.data.length > 0.5 ? '침대' : '침상'
-                    cnt_tenis = cnt_tenis/returnData.data.length > 0.5 ? '있음' : '없음'
-                    cnt_soil = cnt_soil/returnData.data.length > 0.5 ? '있음' : '없음'
-                    cnt_grass = cnt_grass/returnData.data.length > 0.5 ? '있음' : '없음'
-                    cnt_futsal = cnt_futsal/returnData.data.length > 0.5 ? '있음' : '없음'
+                    cnt_tenis = cnt_tenis/returnData.data.length > 0.5 ? '테니스장' : ''
+                    cnt_soil = cnt_soil/returnData.data.length > 0.5 ? '흙운동장' : ''
+                    cnt_grass = cnt_grass/returnData.data.length > 0.5 ? '인조잔디구장' : ''
+                    cnt_futsal = cnt_futsal/returnData.data.length > 0.5 ? '풋살장' : ''
+                    cnt_basket = cnt_basket/returnData.data.length > 0.5 ? '농구장' : ''
+
 
                     setpost({
                         ...post,
@@ -112,6 +138,7 @@ const Average= () => {
                         "soil":cnt_soil,
                         "grass":cnt_grass,
                         "futsal":cnt_futsal,
+                        "basket":cnt_basket
                     })
                     //alert('load');
                     
@@ -133,10 +160,11 @@ const Average= () => {
                 {makeAvgStar("밥",taste)}
                 {makeAvgStar("PX",PXdis)}
                 {makeAvg("침대/침상:  ",bed)}
-                {makeAvg("풋살장:  ",futsal)}
-                {makeAvg("테니스장:  ",tenis)}
-                {makeAvg("잔디 운동장:  ",grass)}
-                {makeAvg("흙 운동장:  ",soil)}
+                {makeAvg("",futsal)}
+                {makeAvg("",tenis)}
+                {makeAvg("",basket)}
+                {makeAvg("",grass)}
+                {makeAvg("",soil)}
                 </div>
             </div>
         </div>
