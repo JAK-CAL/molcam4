@@ -5,6 +5,7 @@ import { Route, NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import Head from "../Head";
 import Postboard from "../postboard/army"
+import './Fulfilled.css';
 
 
 const Container = styled.div`

@@ -3,6 +3,7 @@ import $ from "jquery";
 import {} from "jquery.cookie";
 import Select from 'react-select';
 import axios from "axios";
+import './Writepost.css';
 
 const Writepost = (props) => {
 
@@ -30,7 +31,7 @@ const Writepost = (props) => {
     }, []);
 
     const options = [
-        {value: "8", label:"8사단"},
+        {value: "8", label:"8사단 직할 정보통신대대"},
     ];
 
     const {old,bed,playg,futsal,basket,tenis,vaca, health,PC,trans,taste,PXdis,etc} = post;
@@ -116,10 +117,9 @@ const Writepost = (props) => {
     }
     
 
-    const makeRadio = (name,title) => {
+    const makeRadio = (title) => {
         return (
-            <div>
-                {name}
+            <div class = "res">
                 <input type="radio" name={title} value="1" onChange={handleOnChange}>
                 </input>
                 1
@@ -130,97 +130,128 @@ const Writepost = (props) => {
                 </input>
                 3
             </div>
-
         )
     }
 
     return (
-        <div>
-            <div>
-            부대
-            <Select styles={{ // zIndex 
-            menu: provided => ({...provided, zIndex: 999}) }} 
-            value={options.find(op => { // choice state에 따라 디폴트 option 세팅 
-                return op.value === unit })} 
-                placeholder="사단" 
-                onChange={(value) => { handleChange(value.value); }}
-                options={options} 
-            />
-           
-            </div>
-            {makeRadio("건물 낡음 정도: ","old")}
-            <div>
-                <div>
-                침상/침대:  
-                <input type="radio" name="bed" value="notbed" onChange={handleOnChange}>
-                </input>
-                침상
-                <input type="radio" name="bed" value="bed" onChange={handleOnChange}>
-                </input>
-                침대
+        <body>
+            <div class = "form">
+                <div class = "boodae">
+                
+                <Select styles={{ // zIndex 
+                menu: provided => ({...provided, zIndex: 999}) }} 
+                value={options.find(op => { // choice state에 따라 디폴트 option 세팅 
+                    return op.value === unit })} 
+                    placeholder="부대 선택" 
+                    onChange={(value) => { handleChange(value.value); }}
+                    options={options} 
+                />
+            
                 </div>
-            </div>
+                <div class = "gita">
+                <div class="name">부대에 있는 운동시설을 고르시오.(중복선택 가능)</div>
+                    <span class = "res">
+                    <input type="checkbox"  name="futsal" onChange={handleOnChange}>
+                    </input>
+                    풋살장
+                    <input type="checkbox"  name="basket" onChange={handleOnChange}>
+                    </input>
+                    농구코트
+                    <input type="checkbox"  name="tenis" onChange={handleOnChange}>
+                    </input>
+                    테니스장
+                    <input type="checkbox" name="grass" onChange={handleOnChange}>
+                    </input>
+                    인조잔디
+                    <input type="checkbox"  name="soil" onChange={handleOnChange}>
+                    </input>
+                    흙운동장
+                    </span>
+                </div>
+
             
-            <div>
-                기타:  
-                <input type="checkbox"  name="futsal" onChange={handleOnChange}>
-                </input>
-                풋살장
-                <input type="checkbox"  name="basket" onChange={handleOnChange}>
-                </input>
-                농구코트
-                <input type="checkbox"  name="tenis" onChange={handleOnChange}>
-                </input>
-                테니스장
-                <input type="checkbox" name="grass" onChange={handleOnChange}>
-                </input>
-                인조잔디
-                <input type="checkbox"  name="soil" onChange={handleOnChange}>
-                </input>
-                흙운동장
+                <div class = "chimdae">
+                <div class="name">침상인가요, 침대인가요?</div>
+                    <div >
+                    <span class = "res">
+                    <input type="radio" name="bed" value="notbed" onChange={handleOnChange}>
+                    </input>
+                    침상
+                    <input type="radio" name="bed" value="bed" onChange={handleOnChange}>
+                    </input>
+                    침대
+                    </span>
+                    </div>
+                </div>
+
+                <div class = "pcbang">
+                <div class="name">부대 주변 PC방은 좋은가요? (없으면 0)</div>
+                <span class = "res">
+                    <input type="radio" name="PC" value="0" onChange={handleOnChange}>
+                    </input>
+                    0(없음)
+                    <input type="radio" name="PC" value="1" onChange={handleOnChange}>
+                    </input>
+                    1
+                    <input type="radio" name="PC" value="2" onChange={handleOnChange}>
+                    </input>
+                    2
+                    <input type="radio" name="PC" value="3" onChange={handleOnChange}>
+                    </input>
+                    3
+                    </span>
+                </div>
+                
+                <div class = "healthjang">
+                <div class="name">부대 헬스장은 어떤가요? (없으면 0)</div>
+                <span class = "res">
+                    <input type="radio" name="health" value="0" onChange={handleOnChange}>
+                    </input>
+                    0(없음)
+                    <input type="radio" name="health" value="1" onChange={handleOnChange}>
+                    </input>
+                    1
+                    <input type="radio" name="health" value="2" onChange={handleOnChange}>
+                    </input>
+                    2
+                    <input type="radio" name="health" value="3" onChange={handleOnChange}>
+                    </input>
+                    3
+                    </span>
+                </div>
+                
+                <div class = "gunmul">
+                <div class="name">건물은 좋은가요?</div>
+                {makeRadio("old")}
+                </div>
+
+                <div class = "huega">
+                <div class="name">휴가는 많이 주나요?</div>
+                {makeRadio("vaca")}
+                </div>
+                
+                <div class = "gyotong">
+                <div class="name">교통은 편리한가요?</div>
+                {makeRadio("trans")}
+                </div>
+                
+                <div class = "px">
+                <div class="name">PX는 좋은가요?</div>
+                {makeRadio("PXdis")}
+                </div>
+                
+                <div class = "bab">
+                <div class="name">밥은 맛있나요? </div>
+                {makeRadio("taste")}
+                </div>
+               
+                <div>
+                    <button class = 'btn' onClick = {handleSubmit}>작성</button>
+                   
+                </div>
+                
             </div>
-            
-            {makeRadio("휴가","vaca")}
-        
-            <div>
-                헬스장
-                <input type="radio" name="health" value="0" onChange={handleOnChange}>
-                </input>
-                없음
-                <input type="radio" name="health" value="1" onChange={handleOnChange}>
-                </input>
-                1
-                <input type="radio" name="health" value="2" onChange={handleOnChange}>
-                </input>
-                2
-                <input type="radio" name="health" value="3" onChange={handleOnChange}>
-                </input>
-                3
-            </div>
-            <div>
-                피시방 거리
-                <input type="radio" name="PC" value="0" onChange={handleOnChange}>
-                </input>
-                근처에 없음
-                <input type="radio" name="PC" value="3" onChange={handleOnChange}>
-                </input>
-                3
-                <input type="radio" name="PC" value="2" onChange={handleOnChange}>
-                </input>
-                2
-                <input type="radio" name="PC" value="1" onChange={handleOnChange}>
-                </input>
-                1
-            </div>
-            {makeRadio("교통","trans")}
-            {makeRadio("밥","taste")}
-            {makeRadio("PX와의 거리","PXdis")}
-            <div>
-                <button onClick = {handleSubmit}>작성</button>
-                <button onClick = {handleLoad}>불러오기</button>
-                <button onClick = {handleDelete}>삭제</button>
-            </div>
-        </div>
+        </body>
     )
 }
 
