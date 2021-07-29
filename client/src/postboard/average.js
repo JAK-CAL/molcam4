@@ -18,8 +18,11 @@ const Average= () => {
         trans:0,
         taste:0,
         PXdis:0,
-        etc:""
+        
+
     });
+
+    const [count_res,setcount] = useState(0)
     
     let [avg_old,avg_vac,avg_pc,avg_trans,avg_taste,avg_PXdis,avg_health] = [0,0,0,0,0,0,0,0];
     let [cnt_bed,cnt_soil,cnt_grass,cnt_futsal,cnt_tenis] = [0,0,0,0,0];
@@ -28,6 +31,7 @@ const Average= () => {
     useEffect(()=> {
         handleLoadAll();
     },[]);
+
 
 
 
@@ -57,6 +61,9 @@ const Average= () => {
         axios
             .post("http://192.249.18.153:80/user/loadAll")
             .then(returnData=>{
+                setcount(returnData.data.length
+                );
+                console.log(`조사에 응한 사람 수: ${count_res}`)
                 console.log(returnData)
                 if(returnData.status === 200){
                     for(let i =0; i<returnData.data.length; i++){
@@ -66,8 +73,8 @@ const Average= () => {
                         if (returnData.data[i].futsal !== "") cnt_futsal++;
                         if (returnData.data[i].tenis !== "") cnt_tenis++;
 
-                        avg_old += parseInt(returnData.data[i].old);
-                        avg_vac += parseInt(returnData.data[i].vaca);
+                        if (returnData.data[i].old !== "") avg_old += parseInt(returnData.data[i].old);
+                        if (returnData.data[i].vaca !== "") avg_vac += parseInt(returnData.data[i].vaca);
                         //vac data가 없어서 오류나는 중
                         if (returnData.data[i].PC !== "") avg_pc += parseInt(returnData.data[i].PC);
                         if (returnData.data[i].trans !== "") avg_trans += parseInt(returnData.data[i].trans);
@@ -107,9 +114,7 @@ const Average= () => {
                         "futsal":cnt_futsal,
                     })
                     //alert('load');
-                    console.log(returnData)
-                    console.log(`데이터 개수는${returnData.data.length}`)
-                    console.log(`막사노후도 평균은${avg_old}`);
+                    
                 }
             })
     }
@@ -118,10 +123,8 @@ const Average= () => {
         <div class = "form">
             <div class="result">
                 <h1>8사단 정보통신대대 평가</h1>
-                <p>x명이 평가에 참여했습니다.</p>
-                
+                <p>{count_res}명이 평가에 참여했습니다.</p>
 		    
-            
                 {makeAvgStar("막사 노후도",old)}
                 {makeAvgStar("휴가",vaca)}
                 {makeAvgStar("헬스장",health)}
