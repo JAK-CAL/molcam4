@@ -1,0 +1,81 @@
+#outer {
+    position:relative;
+    left: 30%;
+    bottom: 24px;
+    right: 0;
+    width: 75px;
+    height: 24px;
+    margin-right: 0px;
+  }
+  
+#out{
+  position:relative;
+    height: 30px;
+    margin-right: 0px;
+}
+
+
+#inner {
+    position: absolute;
+    left: 0;
+    right: 0;
+   
+    top: 0;
+    bottom: 0;
+    background-image: url('http://192.249.18.153/static/star.png');
+    background-repeat: repeat; 
+    margin-right: 0px;
+    z-index: 5;
+  }
+  
+  #overlay {
+    position: absolute;
+    right: 0;
+    width: 100px;
+    top: 0;
+    bottom: 0;
+    background-color: #fff;
+    z-index: 10;
+  }
+
+  #ProgressBar {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 25px; 
+    font-size:18px;
+    }
+    #Progress {
+    position: absolute;
+    height: 100%;
+    background-color: #4CAF50;
+    border-radius: 25px; 
+    } 
+
+.result{
+  height: 700px;
+	width: 600px;
+	background-color: #FDFEFE;
+	margin: 15px;
+	border-radius: 8px;
+	border-top: 8px solid #000000;
+	padding: 25px;
+}
+.form{
+  height: 800px;
+  width: 600px;
+  margin: auto;
+}
+
+.starrate{
+  margin-top: 10%;
+}
+
+.value{
+  position: absolute;
+  right: 0;
+  margin-right: 850px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
