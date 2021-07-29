@@ -61,12 +61,13 @@ const Writepost = (props) => {
           .post("http://192.249.18.153:80/user/addOneres",
           params)
           .then(returnData => {
-            
+            console.log(params);
             if (returnData.data.dup === '0') {
                 // console.log(returnData.data.list.length);
                 alert("제출되었습니다!");
+                
                 window.location.href="http://localhost:3000/avg";
-                // console.log(boardList);
+                
             } else {
                 console.log(returnData);
                 console.log(returnData.data.dup2);

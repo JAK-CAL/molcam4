@@ -42,17 +42,14 @@ const Average= () => {
 
     const makeAvgStar = (name,value) => {
         return (
-            <div>
-                {name}
-                <div style ={{
-                    position:"relative"
-                }}>
-                <div id="outer">
-                    <div id="overlay" style={{width:(100-value/3*100)+"%"}}></div>
-                    <div id="inner"></div>
+                <div>
+                    {name}    
+                    <div id="outer">
+                        <div id="overlay" style={{width:(100-value/3*100)+"%"}}></div>
+                        <div id="inner"></div>
+                    </div>
                 </div>
-                </div>
-            </div>
+            
         )
     }
 
@@ -70,7 +67,7 @@ const Average= () => {
                         if (returnData.data[i].tenis !== "") cnt_tenis++;
 
                         avg_old += parseInt(returnData.data[i].old);
-                        //avg_vac += parseInt(returnData.data[i].vaca);
+                        avg_vac += parseInt(returnData.data[i].vaca);
                         //vac data가 없어서 오류나는 중
                         if (returnData.data[i].PC !== "") avg_pc += parseInt(returnData.data[i].PC);
                         if (returnData.data[i].trans !== "") avg_trans += parseInt(returnData.data[i].trans);
@@ -81,7 +78,7 @@ const Average= () => {
                     }
 
                     avg_old /= returnData.data.length;
-                    //avg_vac /= returnData.data.length;
+                    avg_vac /= returnData.data.length;
                     avg_pc /= returnData.data.length;
                     avg_trans /= returnData.data.length;
                     avg_taste /= returnData.data.length;
